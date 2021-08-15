@@ -38,6 +38,6 @@ En el repositorio se subio el archivo `Pipfile` que es la configuración del ent
 
 5. Para ejecutar el proyecto de forma local entramos a la carpteta `cd QuizChacoApp` y ejecutamos el comando `python manage.py runserver`
 
-> Nota: Si el pipenv no funciona se pueden instalar los paquetes de proyecto corrindo el comando "pip install -r requirements.txt" dentro de la carpeta "QuizChacoApp"
+> Nota: Si el pipenv no funciona se pueden instalar los paquetes de proyecto ejecutando el comando "pip install -r requirements.txt" dentro de la carpeta "QuizChacoApp"
 
 6. En el navegador pegamos la url -> `http://127.0.0.1:8000/` y nos muestra la vista de Home
