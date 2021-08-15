@@ -18,6 +18,7 @@ from django.urls import path
 from juego import views
 
 urlpatterns = [
+    path('', views.home, name = 'home'),
     path('home/', views.home, name = 'home'),
     path('acercade/', views.acercade, name = 'acercade'),
     path('jugar/', views.jugar, name = 'jugar'),
