@@ -1,4 +1,4 @@
-# Proyecto final de Django del Informatorio 2021
+# 🚀 Proyecto final de Django del Informatorio 2021
 
 ## Configuración del entorno de desarrollo
 
