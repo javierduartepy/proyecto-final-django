@@ -15,3 +15,6 @@ pylint-celery = "*"
 
 [requires]
 python_version = "3.9"
+
+[scripts]
+server = "python QuizChacoApp/manage.py runserver"

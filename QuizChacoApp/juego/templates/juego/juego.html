@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %} {% block title %}Juego{% endblock %} 
+{% block background %}{% load static %}{% static 'core/img/about-bg.jpg' %}{% endblock %}
+{% block headers %}
+<h1>Temporizador 5..4..3..2..1..0</h1>
+<span class="subheading">Categoria</span>
+{% endblock %} 
+
+{% block content %}
+<div class="row">
+  <div class="col-lg-3 col-md-4 offset-lg-1">
+    <img
+      class="img-fluid"
+      src="{% static 'core/img/chaco.png' %}"
+      alt=""
+    />
+  </div>
+  <div class="col-lg-7 col-md-8">
+    <h4 class="section-heading">{{quiz.pregunta}}</h4>
+    <div><button type="button" class="btn btn-outline-dark btn-block j-button">{{quiz.opcion1}}</button></div>
+    <div><button type="button" class="btn btn-outline-dark btn-block j-button">{{quiz.opcion2}}</button></div>
+    <div><button type="button" class="btn btn-outline-dark btn-block j-button">{{quiz.opcion3}}</button></div>
+    
+    
+    
+  </div>
+</div>
+{% endblock %}
