@@ -1,19 +1,19 @@
 {% extends 'core/base.html'%} {% block title %}Portada{% endblock %}
 {% block background %} {% load static %}{% static 'core/img/home-bg.jpg' %}{% endblock %}
 {% block headers %}
-<h2>Juego de Preguntas de la Provincia del Chaco</h2>
+<h2>El Juego de Preguntas Sobre la Provincia del Chaco</h2>
 <div class="row">
     <div class="col-lg-8 col-md-10 mx-auto j-box-1">
-        <span class="subheading">Seleccione una categoria de preguntas</span>
+        <span class="subheading">Seleccione una categoría de preguntas</span>
     </div>
     <div class="col-lg-10 col-md-12 mx-auto j-box-1">
-        <button type="button" class="btn btn-outline-primary j-button">Categoria 1</button>
-        <button type="button" class="btn btn-outline-secondary j-button">Categoria 2</button>
-        <button type="button" class="btn btn-outline-success j-button">Categoria 3</button>
-        <button type="button" class="btn btn-outline-danger j-button">Categoria 4</button>
-        <button type="button" class="btn btn-outline-warning j-button">Categoria 5</button>
-        <button type="button" class="btn btn-outline-info j-button">Categoria 6</button>
-        <button type="button" class="btn btn-outline-dark j-button">Categoria 7</button>
+        <button id="btnCat1" type="button" class="btn btn-outline-primary j-button">Cultura y Arte</button>
+        <button id="btnCat2" type="button" class="btn btn-outline-secondary j-button">Historia</button>
+        <button id="btnCat3" type="button" class="btn btn-outline-success j-button">Deporte</button>
+        <button id="btnCat4" type="button" class="btn btn-outline-danger j-button">Geografía</button>
+        <button id="btnCat5" type="button" class="btn btn-outline-warning j-button">Economía</button>
+        <button id="btnCat6" type="button" class="btn btn-outline-info j-button">Ciencias y Educación</button>
+        <button id="btnCat7" type="button" class="btn btn-outline-dark j-button">Entretenimiento</button>
     </div>
     <div class="col-lg-8 col-md-10 mx-auto">
         <a href="{% url 'juego' %}" class="btn btn-success btn-lg j-button" role="button">Empezar a Jugar</a>
