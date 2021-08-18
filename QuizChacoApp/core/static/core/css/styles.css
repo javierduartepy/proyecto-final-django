@@ -6,3 +6,8 @@
 .j-box-1 {
   padding: 20px;
 }
+
+.highlight {
+  border: solid 1px yellow;
+  background-color: tomato;
+}

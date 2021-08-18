@@ -10,5 +10,6 @@ urlpatterns = [
     path('juego/', juego_views.juego, name='juego'),
     path('ayuda/', core_views.ayuda, name='ayuda'),
     path('miscelanea/', core_views.miscelanea, name='miscelanea'),
+    path('categoria/', juego_views.categoria, name='categoria'),
     path('admin/', admin.site.urls)
 ]

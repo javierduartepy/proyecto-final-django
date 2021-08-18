@@ -7,14 +7,24 @@
         <span class="subheading">Seleccione una categoría de preguntas</span>
     </div>
     <div class="col-lg-10 col-md-12 mx-auto j-box-1">
-        <button id="btnCat1" type="button" class="btn btn-outline-primary j-button">Cultura y Arte</button>
-        <button id="btnCat2" type="button" class="btn btn-outline-secondary j-button">Historia</button>
-        <button id="btnCat3" type="button" class="btn btn-outline-success j-button">Deporte</button>
-        <button id="btnCat4" type="button" class="btn btn-outline-danger j-button">Geografía</button>
-        <button id="btnCat5" type="button" class="btn btn-outline-warning j-button">Economía</button>
-        <button id="btnCat6" type="button" class="btn btn-outline-info j-button">Ciencias y Educación</button>
-        <button id="btnCat7" type="button" class="btn btn-outline-dark j-button">Entretenimiento</button>
+        <button id="btnCat1" type="button" class="btn btn-outline-primary j-button" onclick="categoriaOnClick('Cultura y Arte', '#btnCat1')">Cultura y Arte</button>
+        <button id="btnCat2" type="button" class="btn btn-outline-secondary j-button" onclick="categoriaOnClick('Historia', '#btnCat2')">Historia</button>
+        <button id="btnCat3" type="button" class="btn btn-outline-success j-button" onclick="categoriaOnClick('Deporte', '#btnCat3')">Deporte</button>
+        <button id="btnCat4" type="button" class="btn btn-outline-danger j-button" onclick="categoriaOnClick('Geografia', '#btnCat4')">Geografía</button>
+        <button id="btnCat5" type="button" class="btn btn-outline-warning j-button" onclick="categoriaOnClick('Economia', '#btnCat5')">Economía</button>
+        <button id="btnCat6" type="button" class="btn btn-outline-info j-button" onclick="categoriaOnClick('Ciencias y Educacion', '#btnCat6')">Ciencias y Educación</button>
+        <button id="btnCat7" type="button" class="btn btn-outline-dark j-button" onclick="categoriaOnClick('Entretenimiento', '#btnCat7')">Entretenimiento</button>
     </div>
+    <script>
+      function categoriaOnClick(categoria, id) {
+        const url = "{% url 'categoria' %}" + "?categoria="+categoria;
+        fetch(url).then(function(){
+          $(".j-button").removeClass("highlight");
+          $(id).addClass("highlight");
+        })
+      }
+
+    </script>
     <div class="col-lg-8 col-md-10 mx-auto">
         <a href="{% url 'juego' %}" class="btn btn-success btn-lg j-button" role="button">Empezar a Jugar</a>
     </div>
