@@ -1,5 +1,9 @@
 from django.contrib import admin
 from django.urls import path
+
+from django.config import settings
+from django.config.urls.static import static
+
 from core import views as core_views
 from juego import views as juego_views
 
@@ -12,4 +16,4 @@ urlpatterns = [
     path('miscelanea/', core_views.miscelanea, name='miscelanea'),
     path('categoria/', juego_views.categoria, name='categoria'),
     path('admin/', admin.site.urls)
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
