@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.urls import path
 
-from django.config import settings
-from django.config.urls.static import static
+from django.conf import settings
+from django.conf.urls.static import static
 
 from core import views as core_views
 from juego import views as juego_views
