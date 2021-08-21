@@ -15,14 +15,13 @@
 
 ### Instalaciones de paquetes necesarios con pip de forma local
 
+La configuracion de un entorno virtual queda a cargo de cada developer como quiera trabajar, las librerias necesarias que necesita tener instalado en su entorno local estan en el archvivo `requirements.txt` y se puede instalar directamente con este comando:
+
 ```
-pip install pipenv
-pip install -U pylint --user
-pip install --upgrade pip --user
-pip install autopep8
+pip install -r requirements.txt
 ```
 
-### Pasos para configurar y corre el proyecto localmente
+### [DEPRECADO] Pasos para configurar y corre el proyecto localmente en un entorno virtual
 
 > Importante: Tenes Git instalado y configurado localmente con una public key SSH. Todos estos pasos se realizaran por linea de comandos.
 
