@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from core.models import Quiz
+from .models import Pregunta
 
 # Create your views here.
 
 
 def juego(request):
-    quiz = Quiz.objects.order_by('-pk')[0]
-    return render(request, "juego/juego.html", {'quiz': quiz})
+    pregunta = Pregunta.objects.order_by('-pk')[0]
+    return render(request, "juego/juego.html", {'pregunta': pregunta})
 
 
 def categoria(request):
