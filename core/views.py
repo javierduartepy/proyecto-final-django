@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Integrante, Miscelanea
 
 # Create your views here.
 
@@ -12,8 +13,11 @@ def ayuda(request):
 
 
 def miscelanea(request):
-    return render(request, "core/miscelanea.html")
+    titulos = Miscelanea.objects.all()
+    return render(request, "core/miscelanea.html", {'titulos' : titulos})
 
 
 def acercade(request):
-    return render(request, "core/acercade.html")
+    integrantes = Integrante.objects.all()
+    return render(request, "core/acercade.html", {'integrantes': integrantes})
+    
