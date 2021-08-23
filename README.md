@@ -20,16 +20,6 @@ La configuracion de un entorno virtual queda a cargo de cada developer como quie
 ```
 pip install -r requirements.txt
 ```
-### Configuración de la base de datos local
-
-'''Creamos un archivo .env para simular en el entorno local la variable DATABASE_URL'''
-
-Creamos en el directorio raiz un archivo llamado .env y dentro le agregamos el siguiente valor:
-
-```
-DATABASE_URL=sqlite:///db.sqlite3
-
-```
 
 ### [DEPRECADO] Pasos para configurar y corre el proyecto localmente en un entorno virtual
 
