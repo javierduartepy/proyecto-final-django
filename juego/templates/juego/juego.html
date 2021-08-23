@@ -41,18 +41,15 @@
   <div class="col-lg-3 col-md-4 offset-lg-1">
     <img
       class="img-fluid"
-      src="{% static 'core/img/chaco.png' %}"
+      src="{{pregunta.imagen}}"
       alt=""
     />
   </div>
   <div class="col-lg-7 col-md-8">
-    <h4 class="section-heading">{{quiz.pregunta}}</h4>
-    <div><button type="button" class="btn btn-outline-dark btn-block j-button">{{quiz.opcion1}}</button></div>
-    <div><button type="button" class="btn btn-outline-dark btn-block j-button">{{quiz.opcion2}}</button></div>
-    <div><button type="button" class="btn btn-outline-dark btn-block j-button">{{quiz.opcion3}}</button></div>
-    
-    
-    
+    <h4 class="section-heading">{{pregunta.pregunta}}</h4>
+    {%for op in opciones %}
+    <div><button type="button" class="btn btn-outline-dark btn-block j-button">{{op.opcion}}</button></div>
+    {% endfor %}
   </div>
 </div>
 {% endblock %}

@@ -1,14 +1,15 @@
 from django.shortcuts import render
-from core.models import Quiz
+from .models import Opcion, Pregunta
 
 # Create your views here.
 
-# mensaje:  incorrecto, casi casi, perfecto, lo tienes, tiempo fuera
-
 
 def juego(request, categoria, id):
-    quiz = Quiz.objects.order_by('-pk')[0]
-    return render(request, "juego/juego.html", {'quiz': quiz, 'categoria': categoria})
+    pregunta = Pregunta.objects.get(pk=id)
+    opciones = Opcion.objects.raw(
+        f"SELECT * FROM opciones WHERE pregunta_id='{id}'")
+    # mensaje:  incorrecto, casi casi, perfecto, lo tienes, tiempo fuera
+    return render(request, "juego/juego.html", {'pregunta': pregunta, 'categoria': categoria, 'opciones': opciones})
 
 
 def categoria(request):
