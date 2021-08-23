@@ -1,8 +1,39 @@
 {% extends 'core/base.html' %} {% block title %}Juego{% endblock %} 
 {% block background %}{% load static %}{% static 'core/img/about-bg.jpg' %}{% endblock %}
 {% block headers %}
-<h1>Temporizador 5..4..3..2..1..0</h1>
-<span class="subheading">Categoria</span>
+<div id="cuenta" class="animate__animated animate__bounce"></div>
+<script>
+  function validarPregunta(opcion) {
+    const url = "{% url 'juego' categoria='Economia' id=3 %}";
+    window.location.href = url;
+  }
+
+  function cuentaRegresiva(numero) {
+    const cuenta = document.createElement('h1');
+    var contador = numero;
+    cuenta.innerHTML = '<span>'+contador+'</span>';
+    document.getElementById("cuenta").appendChild(cuenta);
+    var preguntaCountdown = setInterval(function(){
+      console.log(contador);
+      contador--
+      if (contador < 0) {
+        clearInterval(preguntaCountdown);
+        cuenta.innerHTML = '<div class="animate__animated animate__heartBeat animate__delay-10s fail_color">¡Tiempo fuera!</div>';
+        document.getElementById("cuenta").appendChild(cuenta);
+        setTimeout(() => {
+          const url = "{% url 'juego' categoria='Economia' id=2 %}";
+          window.location.href = url;
+         }, 5000);
+      } else {
+        cuenta.innerHTML = '<span>'+contador+'</span>';
+        document.getElementById("cuenta").appendChild(cuenta);
+      }
+    }, 1000);
+  }
+  var respuesta = "{{quiz.respuesta}}";
+  cuentaRegresiva(5);
+</script>
+<span class="subheading">{{categoria}}</span>
 {% endblock %} 
 
 {% block content %}
@@ -10,18 +41,15 @@
   <div class="col-lg-3 col-md-4 offset-lg-1">
     <img
       class="img-fluid"
-      src="{% static 'core/img/chaco.png' %}"
+      src="{{pregunta.imagen}}"
       alt=""
     />
   </div>
   <div class="col-lg-7 col-md-8">
     <h4 class="section-heading">{{pregunta.pregunta}}</h4>
-    {% comment %} <div><button type="button" class="btn btn-outline-dark btn-block j-button">{{pregunta.opcion1}}</button></div>
-    <div><button type="button" class="btn btn-outline-dark btn-block j-button">{{pregunta.opcion2}}</button></div>
-    <div><button type="button" class="btn btn-outline-dark btn-block j-button">{{pregunta.opcion3}}</button></div> {% endcomment %}
-    
-    
-    
+    {%for op in opciones %}
+    <div><button type="button" class="btn btn-outline-dark btn-block j-button">{{op.opcion}}</button></div>
+    {% endfor %}
   </div>
 </div>
 {% endblock %}
