@@ -23,10 +23,9 @@
           $(id).addClass("highlight");
         })
       }
-
     </script>
     <div class="col-lg-8 col-md-10 mx-auto">
-        <a href="{% url 'juego' %}" class="btn btn-success btn-lg j-button" role="button">Empezar a Jugar</a>
+        <a href="{% url 'juego' categoria='Economia' id=1 %}" class="btn btn-success btn-lg j-button" role="button">Empezar a Jugar</a>
     </div>
 </div>
 {% endblock %}
