@@ -20,3 +20,11 @@
   color: red;
   text-shadow: 2px 2px 4px #000;
 }
+
+.masthead2 {
+  background-color: #38383d;
+}
+
+.j-button-poi {
+  cursor: pointer;
+}
