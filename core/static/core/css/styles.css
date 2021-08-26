@@ -28,3 +28,7 @@
 .j-button-poi {
   cursor: pointer;
 }
+
+.center {
+  text-align: center !important;
+}

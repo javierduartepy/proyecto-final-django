@@ -1,86 +1,68 @@
 <html>
-    <head>
-        <title>Registro</title>
-        <meta charset="utf-8" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-        <link rel="icon" href="../static\core\img\favicon.ico"/>
-        
-    
-        <!-- Estilos y fuentes del template  -->
-        {% load static %}
-        <link
-          href="{% static 'core/vendor/bootstrap/css/bootstrap.min.css' %}"
-          rel="stylesheet"
-        />
-        <link
-          href="{% static 'core/vendor/font-awesome/css/font-awesome.min.css' %}"
-          rel="stylesheet"
-          type="text/css"
-        />
-        <link
-          href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
-          rel="stylesheet"
-          type="text/css"
-        />
-        <link
-          href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-          rel="stylesheet"
-          type="text/css"
-        />
-        <link href="{% static 'core/css/clean-blog.min.css' %}" rel="stylesheet" />
-        <link href="{% static 'core/css/styles.css' %}" rel="stylesheet" />
-    </head>
-    <body>
-        <style>.errorlist{color:red;} label{display:none}</style>
-        
-<main role="main">
-  <div class="container">
-    <div class="row mt-3">
-      <div class="col-md-9 mx-auto mb-5">
-        <form action="" method="post">{% csrf_token %}
-          <h3 class="mb-4">Registro de Usuario</h3>
-          <!-- {{form.as_p}} -->
-
-          {% for field in form %}
-            <div class="fieldWrapper">
-                {{ field.errors }}
-                {{ field.label_tag }} {{ field }}
-                <!--
-                {% if field.help_text %}
-                <p class="help">{{ field.help_text|safe }}</p>
-                {% endif %}
-                -->
-            </div>
-        {% endfor %}
-          <p><input type="submit" class="btn btn-secondary btn-block j-button-poi" value="Registrar"></p>
-        </form>
-      </div>
-    </div>
-  </div>
-</main>
-<footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <ul class="list-inline text-center">
-            <li class="list-inline-item">
-              <a href="https://github.com/javierduartepy/proyecto-final-django" target="_blank">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-          </ul>
-          <p class="copyright text-muted">
-            Copyright &copy; 2021 · Informatorio del Chaco | Grupo 8
-          </p>
+  <head>
+      <title>Registro</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+      <link rel="icon" href="../static\core\img\favicon.ico"/>
+          
+      <!-- Estilos y fuentes del template  -->
+      {% load static %}
+      <link href="{% static 'core/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"/>
+      <link href="{% static 'core/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css"/>
+      <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+      <link href="{% static 'core/css/clean-blog.min.css' %}" rel="stylesheet" />
+      <link href="{% static 'core/css/styles.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    <style>.errorlist{color:red;} label{display:show}</style>
+          
+    <main role="main">
+      <div class="container">
+        <div class="row mt-3">
+          <div class="col-md-9 mx-auto mb-5">
+            <form action="" method="post">{% csrf_token %}
+              <h3 class="mb-4">Registro de Usuario</h3>
+              <!-- {{form.as_p}} -->
+                {% for field in form %}
+                  <div class="fieldWrapper">
+                      {{ field.errors }}
+                      {{ field.label_tag }} {{ field }}
+                      <!--
+                      {% if field.help_text %}
+                      <p class="help">{{ field.help_text|safe }}</p>
+                      {% endif %}
+                      -->
+                  </div>
+              {% endfor %}
+              <p><input type="submit" class="btn btn-secondary btn-block j-button-poi" value="Registrar"></p>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  </footer>
-</body>
+    </main>
+      <footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <ul class="list-inline text-center">
+                <li class="list-inline-item">
+                  <a href="https://github.com/javierduartepy/proyecto-final-django" target="_blank">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+              <p class="copyright text-muted">
+                Copyright &copy; 2021 · Informatorio del Chaco | Grupo 8
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer> 
+      <script src="{% static 'core/vendor/jquery/jquery.min.js' %}"></script>
+      <script src="{% static 'core/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  </body>
 </html>
