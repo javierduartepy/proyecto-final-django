@@ -54,15 +54,15 @@ class Registro(CreateView):
         form = super(Registro, self).get_form()
         # Modificamos en tiempo real
         form.fields['first_name'].widget = forms.TextInput(
-            attrs={'class': 'form-control mb-2', 'placeholder': 'Nombre'})
+            attrs={'class': 'form-control mb-2', 'placeholder': 'El nombre es opcional'})
         form.fields['last_name'].widget = forms.TextInput(
-            attrs={'class': 'form-control mb-2', 'placeholder': 'Apellido'})
+            attrs={'class': 'form-control mb-2', 'placeholder': 'El apellido es opcional'})
         form.fields['username'].widget = forms.TextInput(
-            attrs={'class': 'form-control mb-2', 'placeholder': 'Nombre de usuario'})
+            attrs={'class': 'form-control mb-2', 'placeholder': 'Su usuario es requerido y debe contener 150 carácteres como máximo. Únicamente letras, dígitos y @/./+/-/_'})
         form.fields['email'].widget = forms.EmailInput(
-            attrs={'class': 'form-control mb-2', 'placeholder': 'Email'})
+            attrs={'class': 'form-control mb-2', 'placeholder': 'El email es requerido y debe contener 254 carácteres como máximo y debe ser válido'})
         form.fields['password1'].widget = forms.PasswordInput(
-            attrs={'class': 'form-control mb-2', 'placeholder': 'Contraseña'})
+            attrs={'class': 'form-control mb-2', 'placeholder': 'Su contraseña es requerida y debe contener al menos 8 caracteres'})
         form.fields['password2'].widget = forms.PasswordInput(
-            attrs={'class': 'form-control mb-2', 'placeholder': 'Repite la contraseña'})
+            attrs={'class': 'form-control mb-2', 'placeholder': 'Para verificar, introduzca la misma contraseña anterior'})
         return form
