@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Categoria(models.Model):
@@ -58,6 +59,19 @@ class Opcion(models.Model):
     def __str__(self) -> str:
         return self.opcion 
 
-
+class Puntuacion(models.Model):
+    usuario = models.ForeignKey(User, null=False, blank=False, on_delete=models.RESTRICT)
+    categoria = models.ForeignKey(Categoria, null=False, blank=False, on_delete=models.RESTRICT)
+    nivel = models.ForeignKey(Nivel, null=False, blank=False, on_delete=models.RESTRICT)
+    cantidad_preguntas = models.IntegerField(blank=True, null=True)
+    cantidad_respuestas = models.IntegerField(blank=True, null=True)
+    created = models.DateTimeField(auto_now_add = True, verbose_name= 'Fecha de Creación')
+    updated = models.DateTimeField(auto_now = True, verbose_name= 'Fecha de Edición')
+    
+    class Meta:
+        db_table = 'puntuaciones'
+        
+    
+    
 
 

@@ -1,5 +1,6 @@
+from django import urls
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -17,7 +18,7 @@ urlpatterns = [
     path('categoria/', juego_views.categoria, name='categoria'),
     path('juego/<str:categoria>/<int:id>', juego_views.juego, name='juego'),
 
-    path('registro', usuario_views.registro, name="registro"),
+    path('', include('usuario.urls')),
     path('login', usuario_views.login,  name="login"),
     path('salir', usuario_views.salir, name="salir"),
     path('admin/', admin.site.urls),
