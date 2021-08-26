@@ -4,6 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as do_login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import logout as do_logout
+from .form import UsuarioForm
 
 # Create your views here.
 def login(request):
@@ -13,6 +14,8 @@ def login(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
+            
+            
 
             user = authenticate(username=username, password=password)
             print(user)
