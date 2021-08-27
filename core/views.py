@@ -2,23 +2,19 @@ from django.shortcuts import render
 from .models import Integrante, Miscelanea
 from juego.models import Categoria
 from django.contrib.auth.decorators import login_required
+from juego.models import Puntuacion
 # Create your views here.
 
 
 @login_required(login_url='/login')
 def inicio(request):
-    print("id", request.user.id)
-    return render(request, "core/inicio.html")
-
-
-# @login_required(login_url='/login')
-# def inicio(request):
-#     categorias = Categoria.objects.order_by('pk')
-#     opCategorias = []
-#     for c in categorias:
-#         opCategorias.append(
-#             {'id': c.id, 'nombre': c.nombre, 'key': 'cat' + str(c.id)})
-#     return render(request, "core/inicio.html", {'categorias': opCategorias})
+    puntuaciones = Puntuacion.objects.all()
+    categorias = Categoria.objects.order_by('pk')
+    opCategorias = []
+    for c in categorias:
+        opCategorias.append(
+            {'id': c.id, 'nombre': c.nombre, 'key': 'cat' + str(c.id)})
+    return render(request, "core/inicio.html", {'categorias': opCategorias, 'puntuaciones': puntuaciones})
 
 
 @login_required(login_url='/login')

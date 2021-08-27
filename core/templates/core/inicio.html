@@ -43,17 +43,17 @@
 {% endblock %}
 {% block content %}
 <div class="row">
-  <div class="col-lg-3 col-md-4 offset-lg-1">
+  <div class="col-md-2">
     <img
-      class="img-fluid avatar"
+     
+      class="img-fluid avatar avatar-profile"
       src="{% static 'core/img/avatar/monster_7.svg' %}"
       alt=""
     />
   </div>
-  <div class="col-lg-7 col-md-8">
-   <body>
-    <div class = "container">
-      <div class = "table responsive">
+  <div class="col-md-10">
+   
+    
         {% if request.user.first_name %}
           <h2 class="section-heading">{{request.user.first_name}} {{request.user.last_name}}</h2>
         {% else %}
@@ -71,12 +71,14 @@
                 <th>Compartir</th>
               </tr>
             </thead>
-            <thead>
+            <tbody>
+              {% for puntuacion in puntuaciones %}
               <tr>
-                <td>*****</td>
-                <td>*****</td>
-                <td>*****</td>
-                <td>*****</td>
+                <td>{{puntuacion.categoria}}</td>
+                <td>{{puntuacion.nivel}}</td>
+                <td>{{puntuacion.cantidad_preguntas}}</td>
+                <td>{{puntuacion.cantidad_respuestas}}</td>
+                
                 <td>
                 {% autoescape on %}
                 {% with "https://juegochacoapp.herokuapp.com/" as host %}
@@ -99,13 +101,14 @@
                 {% endwith %}
                 {% endwith %}
                 {% endautoescape %}
+                
                 </td>
               </tr>
-            </thead>
+              {% endfor %}
+            </tbody>
           </table>
-      </div>
-    </div>
-  </body>
+      
+  
   </div>
 </div>
 {% endblock %}
