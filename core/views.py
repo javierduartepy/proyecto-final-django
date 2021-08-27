@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from .models import Integrante, Miscelanea
 from django.contrib.auth.decorators import login_required
+from juego.models import Puntuacion
 # Create your views here.
 
 @login_required(login_url='/login')
 def inicio(request):
-    print("id", request.user.id)
-    return render(request, "core/inicio.html")
+    puntuaciones = Puntuacion.objects.all()
+    return render(request, "core/inicio.html", {'puntuaciones': puntuaciones})
 
 @login_required(login_url='/login')
 def ayuda(request):
