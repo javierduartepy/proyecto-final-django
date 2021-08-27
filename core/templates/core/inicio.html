@@ -1,5 +1,5 @@
 {% extends 'core/base.html'%} {% block title %}Portada{% endblock %}
-{% block background %} {% load static %}{% static 'core/img/home-bg.jpg' %}{% endblock %}
+{% block background %} {% load static %}{% static 'core/img/museo-del-barro.jpg' %}{% endblock %}
 {% block headers %}
 <h2>El Juego de Preguntas Sobre la Provincia del Chaco</h2>
 <div class="row">
@@ -39,22 +39,68 @@
     />
   </div>
   <div class="col-lg-7 col-md-8">
-    <h2 class="section-heading">{{request.user.username}}</h2>
-    <h4>
-      Puntajes Obtenidos
-    </h4>
-    <p>
-      Categoria 1 : 1000 puntos
-    </p>
-    <p>
-      Categoria 2 : 1000 puntos
-    </p>
-    <p>
-      Categoria 3 : 1000 puntos
-    </p>
-    <p>
-      Categoria 4 : 1000 puntos
-    </p>
+   <body>
+    <div class = "container">
+      <div class = "table responsive">
+        {% if request.user.first_name %}
+          <h2 class="section-heading">{{request.user.first_name}} {{request.user.last_name}}</h2>
+        {% else %}
+          <h2 class="section-heading">{{request.user.username}}</h2>
+        {% endif %}
+            
+        <p class="subheading" >Progreso</p>
+          <table class = "table">
+            <thead>
+              <tr>
+                <th class="subheading">Categoría</th>
+                <th>Nivel</th>
+                <th>Cantidad de Preguntas</th>
+                <th>Respuestas Correctas</th>
+                <th>Compartir</th>
+              </tr>
+            </thead>
+            <thead>
+              <tr>
+                <td>*****</td>
+                <td>*****</td>
+                <td>*****</td>
+                <td>*****</td>
+                <td>
+                {% autoescape on %}
+                {% with "https://juegochacoapp.herokuapp.com/" as host %}
+                {% with "Share in" as share_txt %}
+                {% with "twitter" as service %}
+                  <a href="http://twitter.com/share?url={{ host }}{{ page_url }}&amp;text={{ title }}" target="_blank" title="{{ share_txt }} {{ service }}">
+                    <i class="fa fa-twitter"></i>
+                  </a>
+                {% endwith%}
+                {% with "facebook" as service %}
+                  <a href="http://www.facebook.com/share.php?u={{ host }}{{ page_url }}&amp;t={{ title }}" target="_blank" title="{{ share_txt }} {{ service }}">
+                    <i class="fa fa-facebook"></i>
+                  </a>
+                {% endwith %}
+                {% with "instagram" as service %}
+                  <a href="http://www.instagram.com/reader/link?title={{ title }}&amp;url={{ host }}{{ page_url }}" target="_blank" title="{{ share_txt }} {{ service }}">
+                    <i class="fa fa-instagram"></i>
+                  </a>
+                {% endwith %}
+                {% endwith %}
+                {% endwith %}
+                {% endautoescape %}
+                </td>
+              </tr>
+            </thead>
+          </table>
+      </div>
+    </div>
+  </body>
   </div>
 </div>
 {% endblock %}
+
+
+
+
+
+
+
