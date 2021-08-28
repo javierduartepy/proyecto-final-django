@@ -3,35 +3,35 @@
 {% block headers %}
 <div id="cuenta" class="animate__animated animate__bounce"></div>
 <script>
-  function validarPregunta(opcion) {
-    const url = "{% url 'juego' categoria='Economia' id=3 %}";
-    window.location.href = url;
-  }
+   function validarPregunta(opcion) {
+     const url = "{% url 'juego' categoria='Economia' preguntaId=3 %}";
+     window.location.href = url;
+   }
 
-  function cuentaRegresiva(numero) {
-    const cuenta = document.createElement('h1');
-    var contador = numero;
-    cuenta.innerHTML = '<span>'+contador+'</span>';
-    document.getElementById("cuenta").appendChild(cuenta);
-    var preguntaCountdown = setInterval(function(){
-      console.log(contador);
-      contador--
-      if (contador < 0) {
-        clearInterval(preguntaCountdown);
-        cuenta.innerHTML = '<div class="animate__animated animate__heartBeat animate__delay-10s fail_color">¡Tiempo fuera!</div>';
-        document.getElementById("cuenta").appendChild(cuenta);
-        setTimeout(() => {
-          const url = "{% url 'juego' categoria='Economia' id=2 %}";
-          window.location.href = url;
-         }, 5000);
-      } else {
-        cuenta.innerHTML = '<span>'+contador+'</span>';
-        document.getElementById("cuenta").appendChild(cuenta);
-      }
-    }, 1000);
-  }
-  var respuesta = "{{quiz.respuesta}}";
-  cuentaRegresiva(5);
+   function cuentaRegresiva(numero) {
+     const cuenta = document.createElement('h1');
+     var contador = numero;
+     cuenta.innerHTML = '<span>'+contador+'</span>';
+     document.getElementById("cuenta").appendChild(cuenta);
+     var preguntaCountdown = setInterval(function(){
+       console.log(contador);
+       contador--
+       if (contador < 0) {
+         clearInterval(preguntaCountdown);
+         cuenta.innerHTML = '<div class="animate__animated animate__heartBeat animate__delay-10s fail_color">¡Tiempo fuera!</div>';
+         document.getElementById("cuenta").appendChild(cuenta);
+         setTimeout(() => {
+           const url = "{% url 'juego' categoriaId=3 preguntaId=2 %}";
+           window.location.href = url;
+          }, 5000);
+       } else {
+         cuenta.innerHTML = '<span>'+contador+'</span>';
+         document.getElementById("cuenta").appendChild(cuenta);
+       }
+     }, 1000);
+   }
+   var respuesta = "{{quiz.respuesta}}";
+   cuentaRegresiva(5);
 </script>
 <span class="subheading">{{categoria}}</span>
 {% endblock %} 
@@ -52,4 +52,4 @@
     {% endfor %}
   </div>
 </div>
-{% endblock %}
+{% endblock %} 

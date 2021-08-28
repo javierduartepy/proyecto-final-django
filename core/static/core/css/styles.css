@@ -1,6 +1,7 @@
 .j-button {
   cursor: pointer;
   margin: 5px;
+  border-radius: 0.5rem;
 }
 
 .j-box-1 {
@@ -8,8 +9,9 @@
 }
 
 .highlight {
-  border: solid 1px yellow;
-  background-color: tomato;
+  background-color: #183153;
+  color: white;
+  font-weight: 900;
 }
 
 .countdown {
@@ -33,4 +35,36 @@
   text-align: center !important;
 }
 
-.avatar-profile {width:200px !important;}
+.avatar-profile {
+  width: 200px !important;
+}
+
+ul {
+  list-style: none;
+  text-decoration: none;
+}
+
+ul li button:hover {
+  background: #183153 !important;
+  color: white !important;
+  transition: all 300ms;
+  text-decoration: none;
+  -webkit-animation: rubberBand 1s;
+  animation: rubberBand 1s;
+}
+
+.start-button {
+  font-size: large;
+  background-color: #1c7ed6;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-style: solid;
+  border-width: 1px;
+  flex-grow: 1;
+  padding: 1.5rem;
+}
+
+.start-button:hover {
+  background-color: #1c7ed6 !important;
+  -webkit-animation: heartBeat 1s;
+  animation: heartBeat 1s;
+}
