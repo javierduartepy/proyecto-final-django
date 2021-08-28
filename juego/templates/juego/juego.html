@@ -4,11 +4,12 @@
 <div id="cuenta" class="animate__animated animate__bounce"></div>
 <script>
    function validarPregunta(opcion) {
-     const url = "{% url 'juego' categoria='Economia' preguntaId=3 %}";
+     const url = "{% url 'juego' categoriaId=3 preguntaId=1 %}";
      window.location.href = url;
    }
 
    function cuentaRegresiva(numero) {
+     const respuesta = "{{pregunta.pregunta}}";
      const cuenta = document.createElement('h1');
      var contador = numero;
      cuenta.innerHTML = '<span>'+contador+'</span>';
@@ -21,7 +22,7 @@
          cuenta.innerHTML = '<div class="animate__animated animate__heartBeat animate__delay-10s fail_color">¡Tiempo fuera!</div>';
          document.getElementById("cuenta").appendChild(cuenta);
          setTimeout(() => {
-           const url = "{% url 'juego' categoriaId=3 preguntaId=2 %}";
+           const url = "{% url 'juego' categoriaId=3 preguntaId=1 %}";
            window.location.href = url;
           }, 5000);
        } else {
@@ -30,10 +31,9 @@
        }
      }, 1000);
    }
-   var respuesta = "{{quiz.respuesta}}";
-   cuentaRegresiva(5);
+   cuentaRegresiva(20);
 </script>
-<span class="subheading">{{categoria}}</span>
+<span class="subheading">{{categoria.nombre}}</span>
 {% endblock %} 
 
 {% block content %}
