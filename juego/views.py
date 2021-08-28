@@ -6,10 +6,11 @@ from django.http import JsonResponse
 
 
 @login_required(login_url='/login')
-def juego(request, categoria, preguntaId):
-    pregunta = Pregunta.objects.get(pk=id)
+def juego(request, categoriaId, preguntaId):
+    categoria = Categoria.objects.get(pk=categoriaId)
+    pregunta = Pregunta.objects.get(pk=preguntaId)
     opciones = Opcion.objects.raw(
-        f"SELECT * FROM opciones WHERE pregunta_id='{id}'")
+        f"SELECT * FROM opciones WHERE pregunta_id='{preguntaId}'")
     # mensaje:  incorrecto, casi casi, perfecto, lo tienes, tiempo fuera
     return render(request, "juego/juego.html", {'pregunta': pregunta, 'categoria': categoria, 'opciones': opciones})
 
@@ -17,7 +18,6 @@ def juego(request, categoria, preguntaId):
 def categoria(request):
     preguntas = None
     categoriaId = request.GET.get('categoriaId', None)
-    categoria = Categoria.objects.get(pk=categoriaId)
     if Pregunta.objects.filter(categoria_id=categoriaId).exists():
         preguntas = Pregunta.objects.filter(categoria_id=categoriaId).values()
     json_response = {'preguntas': list(preguntas)}

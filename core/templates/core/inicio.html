@@ -32,23 +32,30 @@
       </ul>
     </div> 
     <script>
+      var glbCat = null;
+      var glbPre = null;
       function categoriaOnClick(key, categoriaId) {
-        const url = `{% url 'categoria' %}?categoriaId=${categoriaId}`;
-         fetch(url).then(response => response.json()).then(function(data) {
-           console.log('====================================');
-           console.log(data);
-           console.log('====================================');
-
-           $(".j-button").removeClass("highlight");
-           $(`#${key}`).addClass("highlight");
+        glbCat = categoriaId;
+        const categoriaUrl = `{% url 'categoria' %}?categoriaId=${categoriaId}`;
+         fetch(categoriaUrl).then(response => response.json()).then(function(data) {
+            const { preguntas } = data;
+            if(preguntas) {
+              glbPre = preguntas[0].id.toString();
+              $(".j-button").removeClass("highlight");
+              $(`#${key}`).addClass("highlight");
+            }
         })
+      }
+
+      function empezarJuego() {
+        const juegoUrl = "{% url 'juego' categoriaId=123 preguntaId=456 %}".replace(/123/, glbCat).replace(/456/, glbPre)
+        window.location.href = juegoUrl;
       }
     </script>
     <div class="col-lg-8 col-md-10 mx-auto">
-        
-        <button 
+        <a onclick="empezarJuego()"
            class="btn btn-primary btn-lg j-button start-button" 
-           role="button"><i class="fa fa-rocket fa-2x"></i> Empezar Juego</button>
+           role="button"><i class="fa fa-rocket fa-2x"></i> Empezar Juego</a>
     </div> 
 </div>
 {% endblock %}
