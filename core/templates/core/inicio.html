@@ -3,8 +3,19 @@
 {% block headers %}
 <h2>Juego de Preguntas Sobre la Provincia del Chaco</h2>
 <div class="row">
-    <div class="col-lg-8 col-md-10 mx-auto j-box-1">
-        <span class="subheading">Seleccione una categoría de preguntas</span>
+   <div class="col-lg-8 col-md-10 mx-auto j-box-1">
+      <span class="subheading">Seleccione una categoría de preguntas</span>
+        <div class="row j-box-1">
+          <div class="col-md-4">
+            <h6><i class="fa fa-trophy"></i> Nivel Básico</h6>
+          </div>
+          <div class="col-md-4">
+            <h6><i class="fa fa-trophy"></i> Nivel Medio</h6>
+          </div>
+          <div class="col-md-4">
+            <h6><i class="fa fa-trophy"></i> Nivel Master</h6>
+          </div>
+        </div>
     </div>
     <div class="col-lg-10 col-md-12 mx-auto j-box-1">
       <ul>
@@ -82,6 +93,8 @@
                 <td>
                 {% autoescape on %}
                 {% with "https://juegochacoapp.herokuapp.com/" as host %}
+                {% with content.title as title %} 
+                {% with content.get_url as page_url %} 
                 {% with "Share in" as share_txt %}
                 {% with "twitter" as service %}
                   <a href="http://twitter.com/share?url={{ host }}{{ page_url }}&amp;text={{ title }}" target="_blank" title="{{ share_txt }} {{ service }}">
@@ -97,6 +110,8 @@
                   <a href="http://www.instagram.com/reader/link?title={{ title }}&amp;url={{ host }}{{ page_url }}" target="_blank" title="{{ share_txt }} {{ service }}">
                     <i class="fa fa-instagram"></i>
                   </a>
+                {% endwith %}
+                {% endwith %}
                 {% endwith %}
                 {% endwith %}
                 {% endwith %}
