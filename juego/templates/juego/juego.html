@@ -3,35 +3,54 @@
 {% block headers %}
 <div id="cuenta" class="animate__animated animate__bounce"></div>
 <script>
-   function validarPregunta(opcion) {
-     const url = "{% url 'juego' categoriaId=3 preguntaId=1 %}";
-     window.location.href = url;
-   }
-
+  const _TIMEOUT = 2000;
+  const _COUNTDOWN = 20;
+  const cuenta = document.createElement('h1');
+  var preguntaCountdown = null;
    function cuentaRegresiva(numero) {
-     const respuesta = "{{pregunta.pregunta}}";
-     const cuenta = document.createElement('h1');
      var contador = numero;
      cuenta.innerHTML = '<span>'+contador+'</span>';
      document.getElementById("cuenta").appendChild(cuenta);
-     var preguntaCountdown = setInterval(function(){
-       console.log(contador);
+     preguntaCountdown = setInterval(function() {
        contador--
        if (contador < 0) {
          clearInterval(preguntaCountdown);
-         cuenta.innerHTML = '<div class="animate__animated animate__heartBeat animate__delay-10s fail_color">¡Tiempo fuera!</div>';
+         cuenta.innerHTML = '<div class="error-color">¡Tiempo fuera!</div>';
          document.getElementById("cuenta").appendChild(cuenta);
-         setTimeout(() => {
-           const url = "{% url 'juego' categoriaId=3 preguntaId=1 %}";
-           window.location.href = url;
-          }, 5000);
+          setTimeout(() => {
+            const url = "{% url 'juego' categoriaId=3 preguntaId=4 %}";
+            window.location.href = url;
+          }, _TIMEOUT);
        } else {
          cuenta.innerHTML = '<span>'+contador+'</span>';
          document.getElementById("cuenta").appendChild(cuenta);
        }
-     }, 1000);
+     }, _TIMEOUT);
    }
-   cuentaRegresiva(20);
+
+   function validarElCorrecto(id, preguntaId, correcto) {
+    clearInterval(preguntaCountdown);
+    $(".j-button").removeClass("btn-outline-secondary");
+      const opcionUrl = `{% url 'opcionCorrecta' %}?preguntaId=${preguntaId}`;
+      fetch(opcionUrl).then(response => response.json()).then(function(data) {
+          const { opciones } = data;
+          respuestCorrecta = opciones.find(op => (op.correcto));
+          $(`#${respuestCorrecta.id}`).addClass("correcto-highlight");
+          if(correcto === 'True') {
+            cuenta.innerHTML = '<div class="exito-color">¡Correcto!</div>';
+            document.getElementById("cuenta").appendChild(cuenta);
+          } else {
+            $(`#${id}`).addClass("incorrecto-highlight");
+            cuenta.innerHTML = '<div class="error-color">Incorrecto!</div>';
+            document.getElementById("cuenta").appendChild(cuenta);
+          }
+          setTimeout(() => {
+            const url = "{% url 'juego' categoriaId=3 preguntaId=4 %}";
+            window.location.href = url;
+          }, _TIMEOUT);
+        })
+   }
+   cuentaRegresiva(_COUNTDOWN);
 </script>
 <span class="subheading">{{categoria.nombre}}</span>
 {% endblock %} 
@@ -47,8 +66,15 @@
   </div>
   <div class="col-lg-7 col-md-8">
     <h4 class="section-heading">{{pregunta.pregunta}}</h4>
-    {%for op in opciones %}
-    <div><button type="button" class="btn btn-outline-dark btn-block j-button">{{op.opcion}}</button></div>
+    {% for op in opciones %}
+    <div>
+      <button 
+        id={{op.id}}
+        onclick="validarElCorrecto('{{op.id}}', '{{op.pregunta_id}}', '{{op.correcto}}')"
+        type="button" 
+        class="btn btn-outline-secondary btn-block j-button">{{op.opcion}}
+        </button>
+      </div>
     {% endfor %}
   </div>
 </div>
