@@ -30,7 +30,7 @@ class Nivel(models.Model):
     class Meta:
         db_table = 'niveles'
         verbose_name = 'nivele'
-        ordering = ['nombre']
+        ordering = ['pk']
 
     def __str__(self) -> str:
         return self.nombre

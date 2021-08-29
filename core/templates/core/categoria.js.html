@@ -1,0 +1,29 @@
+<script>
+    var glbCat = null;
+    var glbPre = null;
+    /*Funcion que permite seleccionar una catgoria y pasarsela a la vista categoria*/
+    function categoriaOnClick(key, categoriaId) {
+      $(".start-button").removeClass("start-button-animation");
+      glbCat = categoriaId;
+      const categoriaUrl = `{% url 'categoria' %}?categoriaId=${categoriaId}`;
+       fetch(categoriaUrl).then(response => response.json()).then(function(data) {
+          const { preguntas } = data;
+          if(preguntas) {
+            glbPre = preguntas[0].id.toString();
+            $(".j-button").removeClass("highlight");
+            $(`#${key}`).addClass("highlight");
+            $(".start-button").addClass("start-button-animation");
+          }
+      })
+    }
+    /*Funcion que navega a la pagina del juego con la primera pregunta de la categoria seleccionada*/
+    function empezarJuego() {
+      if (glbCat) {
+        const juegoUrl = "{% url 'juego' categoriaId=123 preguntaId=456 %}".replace(/123/, glbCat).replace(/456/, glbPre)
+        window.location.href = juegoUrl;
+      } else {
+        $(".start-button").addClass("start-button-animation-disabled");          
+      }
+      
+    }
+  </script>

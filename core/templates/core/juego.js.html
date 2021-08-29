@@ -35,6 +35,7 @@ var preguntaActualId = '{{pregunta.id}}';
         clearInterval(preguntaCountdown);
         cuenta.innerHTML = '<div class="error-color">¡Tiempo fuera!</div>';
         document.getElementById("cuenta").appendChild(cuenta);
+        setPuntuacion(0);
         setTimeout(() => {
           avanzarAlSiguiente();
         }, _TIMEOUT);
@@ -54,10 +55,11 @@ var preguntaActualId = '{{pregunta.id}}';
       respuestCorrecta = opciones.find(op => (op.correcto));
       $(`#${respuestCorrecta.id}`).addClass("correcto-highlight");
       if(correcto === 'True') {
-        setPuntuacion();
+        setPuntuacion(1);
         cuenta.innerHTML = '<div class="exito-color">¡Correcto!</div>';
         document.getElementById("cuenta").appendChild(cuenta);
       } else {
+        setPuntuacion(0);
         $(`#${id}`).addClass("incorrecto-highlight");
         cuenta.innerHTML = '<div class="error-color">Incorrecto!</div>';
         document.getElementById("cuenta").appendChild(cuenta);
@@ -84,7 +86,7 @@ var preguntaActualId = '{{pregunta.id}}';
    
   function setPuntuacion(puntuacion) {
     let contarCorrectas = localStorage.getItem("puntuacion") ? parseInt(localStorage.getItem("puntuacion")) : 0;
-    contarCorrectas += 1;
+    contarCorrectas += puntuacion;
     localStorage.setItem("puntuacion", contarCorrectas);
   }
 

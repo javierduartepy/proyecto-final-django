@@ -9,12 +9,15 @@ from juego.models import Puntuacion
 @login_required(login_url='/login')
 def inicio(request):
     puntuaciones = Puntuacion.objects.all()
+    copitas = []
+    for p in puntuaciones:
+        copitas.append({'nivel': p.nivel.nombre, 'categoria' : p.categoria.nombre})
     categorias = Categoria.objects.order_by('pk')
     opCategorias = []
     for c in categorias:
         opCategorias.append(
             {'id': c.id, 'nombre': c.nombre, 'key': 'cat' + str(c.id)})
-    return render(request, "core/inicio.html", {'categorias': opCategorias, 'puntuaciones': puntuaciones})
+    return render(request, "core/inicio.html", {'categorias': opCategorias, 'puntuaciones': puntuaciones, 'copitas': copitas})
 
 
 @login_required(login_url='/login')
