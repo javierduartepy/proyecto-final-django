@@ -2,6 +2,7 @@
   cursor: pointer;
   margin: 5px;
   border-radius: 0.5rem;
+  
 }
 
 .j-box-1 {
@@ -84,6 +85,7 @@ ul li button:hover {
   border-width: 1px;
   flex-grow: 1;
   padding: 1.5rem;
+  text-shadow: 2px 2px 2px black;
 }
 
 .start-button:hover {
@@ -99,3 +101,29 @@ ul li button:hover {
   -webkit-animation: shakeX 1s;
   animation: shakeX 1s;
 }
+
+.copas {
+  font-weight: 900;
+  padding: 10px;
+  color: #ffc107;
+  text-shadow: 2px 2px 2px black;
+  font-weight: 800;
+  font-family: 'Open Sans','Helvetica Neue',Helvetica,
+Arial,sans-serif;
+}
+
+.mensaje-categoria {
+  text-shadow: 2px 2px 2px black;
+  font-weight: 800;
+  font-family: 'Open Sans','Helvetica Neue',Helvetica,
+Arial,sans-serif;
+}
+
+.titulo-juego {
+  text-shadow: 2px 2px 2px black;
+  font-weight: 800;
+  font-family: 'Open Sans','Helvetica Neue',Helvetica,
+Arial,sans-serif;
+}
+
+
