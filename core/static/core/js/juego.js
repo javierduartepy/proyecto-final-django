@@ -1,9 +1,10 @@
 (function ($) {
   "use strict"; // Start of use strict
 
-  // $(document).on("click", "#btnCat1", function (categoria) {
-  //   console.log(categoria);
-  // });
+  //  $(document).on("click", "#btnCat1", function (categoria) {
+  //    console.log(categoria);
+  //  });
+
   // Floating label headings for the contact form
   $("body")
     .on("input propertychange", ".floating-label-form-group", function (e) {
