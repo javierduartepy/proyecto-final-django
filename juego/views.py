@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import Categoria, Opcion, Pregunta
+from django.shortcuts import render, redirect
+from .models import Categoria, Opcion, Pregunta, Puntuacion
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 # Create your views here.
@@ -56,3 +56,12 @@ def preguntas(request):
     json_response = {'preguntas': preguntas,
                      'siguientesPreguntas': siguientesPreguntas}
     return JsonResponse(json_response)
+
+
+def guardarPuntuacion(request):
+    if request.method == 'POST':
+        datosDeLaPuntuacion = request.POST
+        print(datosDeLaPuntuacion)
+        # puntuacion = Puntuacion(usuario=1, categoria=1, nivel= 1, cantidad_preguntas=15, cantidad_respuestas=2)
+        # puntuacion.save()
+    return redirect('inicio')

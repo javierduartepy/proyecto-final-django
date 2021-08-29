@@ -1,4 +1,5 @@
 <script>
+    cleanPuntuacion();
     var glbCat = null;
     var glbPre = null;
     /*Funcion que permite seleccionar una catgoria y pasarsela a la vista categoria*/
@@ -25,5 +26,8 @@
         $(".start-button").addClass("start-button-animation-disabled");          
       }
       
+    }
+    function cleanPuntuacion() {
+        localStorage.removeItem("puntuacion");
     }
   </script>

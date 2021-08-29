@@ -76,7 +76,37 @@ var preguntaActualId = '{{pregunta.id}}';
       const sigPregId = preguntasQueFaltas[0].toString();
       url = "{% url 'juego' categoriaId=123 preguntaId=456 %}".replace(/123/, categoriaActualId).replace(/456/, sigPregId)
     } else {
-      cleanPuntuacion();
+      // Guardamos los puntajes en el base de Django
+      var csrftoken = '{{ csrf_token }}'
+      const usuario = "{{request.user.id}}";
+      let puntuacion = {
+        'usuarioId': parseInt(usuario),
+        'categoriaId': parseInt(categoriaActualId),
+        'nivelId': 1,
+        'cantidadPreguntas': 15,
+        'cantidadRespuestas': 2
+      }
+
+      const url = "{% url 'puntuacion' %}"
+      fetch(url, {
+        method: 'POST',
+        headers:{'X-CSRFToken':csrftoken},
+        body: puntuacion
+      })
+      .then(function(response) {
+        if(response.ok) {
+            console.log(response.text()) 
+        } else {
+          console.log("Error al guardar") 
+        }
+
+      })
+      .then(function(texto) {
+        console.log(texto);
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
     }
     window.location.href = url;
   }
@@ -96,9 +126,5 @@ var preguntaActualId = '{{pregunta.id}}';
       pts = parseInt(pts);
     }
     return pts;
-  }
-
-  function cleanPuntuacion() {
-    localStorage.removeItem("puntuacion");
   }
 </script>
