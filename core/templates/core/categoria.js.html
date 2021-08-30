@@ -44,7 +44,7 @@
     /*Funcion que navega a la pagina del juego con la primera pregunta de la categoria seleccionada*/
     function empezarJuego() {
       if (categoriaAJugar && nivelAJugar) {
-        const juegoUrl = "{% url 'juego' categoriaId=123 preguntaId=456 nivelId=789 %}".replace(/123/, categoriaAJugar).replace(/456/, primeraPregunta).replace(/789/, nivelAJugar)
+        const juegoUrl = "{% url 'juego' categoriaId=123 nivelId=789 preguntaId=456 %}".replace(/123/, categoriaAJugar).replace(/789/, nivelAJugar).replace(/456/, primeraPregunta)
         window.location.href = juegoUrl;
       } else {
         $(".start-button").addClass("start-button-animation-disabled");          

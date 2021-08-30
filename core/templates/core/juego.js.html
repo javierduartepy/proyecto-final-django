@@ -76,7 +76,7 @@
     let url = "{% url 'inicio' %}"
     if(!!preguntasQueFaltas.length) {
       const sigPregId = preguntasQueFaltas[0].toString();
-      url = "{% url 'juego' categoriaId=123 preguntaId=456 nivelId=789 %}".replace(/123/, categoriaActualId).replace(/456/, sigPregId).replace(/789/, nivelActualId)
+      url = "{% url 'juego' categoriaId=123 nivelId=789 preguntaId=456 %}".replace(/123/, categoriaActualId).replace(/789/, nivelActualId).replace(/456/, sigPregId)
       window.location.href = url;
     } else {
       const cantidadRespuestas = getPuntuacion();

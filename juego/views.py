@@ -7,7 +7,7 @@ from django.http import JsonResponse
 
 
 @login_required(login_url='/login')
-def juego(request, categoriaId, preguntaId=None, nivelId=None):
+def juego(request, categoriaId, nivelId, preguntaId=None):
     categoria = Categoria.objects.get(pk=categoriaId)
     nivel = Nivel.objects.get(pk=nivelId)
     if preguntaId:

@@ -7,9 +7,9 @@ urlpatterns = [
     path('puntuaciones/', juego_views.puntuaciones, name='puntuaciones'),
     path('opcionCorrecta/', juego_views.opcionCorrecta, name='opcionCorrecta'),
     path('puntuacion/', juego_views.guardarPuntuacion, name='puntuacion'),
-    path('juego/<int:categoriaId>/<int:preguntaId>/<int:nivelId>',
-         juego_views.juego, name='juego'),
     path('jugar/?P<int:categoriaId>/?P<int:nivelId>',
+         juego_views.juego, name='juego'),
+    path('juego/<int:categoriaId>/<int:nivelId>/<int:preguntaId>',
          juego_views.juego, name='juego'),
 
 
