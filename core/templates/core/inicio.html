@@ -71,6 +71,7 @@
           <table class = "table">
             <thead class='tabla-progreso'>
               <tr>
+                <th>Jugar</th>
                 <th>Categoría</th>
                 <th>Nivel</th>
                 <th>Cantidad de Preguntas</th>
@@ -81,6 +82,9 @@
             <tbody>
               {% for puntuacion in puntuaciones %}
               <tr class='datos-progreso'>
+                <td><a href="{% url 'juego' puntuacion.categoria.id puntuacion.nivel.id %}">
+                  <i class="fa fa-history"></i>
+                </a></td>
                 <td>{{puntuacion.categoria}}</td>
                 <td>{{puntuacion.nivel}}</td>
                 <td>{{puntuacion.cantidad_preguntas}}</td>

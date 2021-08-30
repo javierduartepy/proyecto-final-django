@@ -7,13 +7,18 @@ from django.http import JsonResponse
 
 
 @login_required(login_url='/login')
-def juego(request, categoriaId, preguntaId, nivelId):
+def juego(request, categoriaId, preguntaId=None, nivelId=None):
     categoria = Categoria.objects.get(pk=categoriaId)
     nivel = Nivel.objects.get(pk=nivelId)
-    pregunta = Pregunta.objects.get(pk=preguntaId)
-    opciones = Opcion.objects.raw(
-        f"SELECT * FROM opciones WHERE pregunta_id='{preguntaId}'")
-
+    if preguntaId:
+        pregunta = Pregunta.objects.get(pk=preguntaId)
+        opciones = Opcion.objects.raw(
+            f"SELECT * FROM opciones WHERE pregunta_id='{preguntaId}'")
+    else:
+        pregunta = Pregunta.objects.order_by('id').filter(
+            categoria_id=categoriaId, nivel_id=nivelId)[0]
+        opciones = Opcion.objects.raw(
+            f"SELECT * FROM opciones WHERE pregunta_id='{pregunta.id}'")
     return render(request, "juego/juego.html", {'pregunta': pregunta, 'categoria': categoria, 'opciones': opciones, 'nivel': nivel})
 
 

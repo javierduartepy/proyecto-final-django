@@ -9,5 +9,8 @@ urlpatterns = [
     path('puntuacion/', juego_views.guardarPuntuacion, name='puntuacion'),
     path('juego/<int:categoriaId>/<int:preguntaId>/<int:nivelId>',
          juego_views.juego, name='juego'),
+    path('jugar/?P<int:categoriaId>/?P<int:nivelId>',
+         juego_views.juego, name='juego'),
+
 
 ]
