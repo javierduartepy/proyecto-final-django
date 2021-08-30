@@ -7,22 +7,39 @@ from django.http import JsonResponse
 
 
 @login_required(login_url='/login')
-def juego(request, categoriaId, preguntaId):
+def juego(request, categoriaId, preguntaId, nivelId):
     categoria = Categoria.objects.get(pk=categoriaId)
+    nivel = Nivel.objects.get(pk=nivelId)
     pregunta = Pregunta.objects.get(pk=preguntaId)
     opciones = Opcion.objects.raw(
         f"SELECT * FROM opciones WHERE pregunta_id='{preguntaId}'")
 
-    return render(request, "juego/juego.html", {'pregunta': pregunta, 'categoria': categoria, 'opciones': opciones})
+    return render(request, "juego/juego.html", {'pregunta': pregunta, 'categoria': categoria, 'opciones': opciones, 'nivel': nivel})
 
 
 def categoria(request):
+    usuarioId = request.user.id
     preguntas = None
     categoriaId = request.GET.get('categoriaId', None)
-    if Pregunta.objects.filter(categoria_id=categoriaId).exists():
-        preguntas = Pregunta.objects.filter(
-            categoria_id=categoriaId).order_by('pk').values()
-    json_response = {'preguntas': list(preguntas)}
+    nivelId = request.GET.get('nivelId', None)
+    print(nivelId)
+    if Pregunta.objects.filter(categoria_id=categoriaId, nivel_id=nivelId).exists():
+        preguntas = list(Pregunta.objects.filter(
+            categoria_id=categoriaId, nivel_id=nivelId).values())
+
+    json_response = {'preguntas': preguntas}
+    return JsonResponse(json_response)
+
+
+def puntuaciones(request):
+    usuarioId = request.user.id
+    puntuaciones = None
+    categoriaId = request.GET.get('categoriaId', None)
+
+    if Puntuacion.objects.filter(usuario_id=usuarioId, categoria_id=categoriaId).exists():
+        puntuaciones = list(Puntuacion.objects.filter(
+            usuario_id=usuarioId, categoria_id=categoriaId).order_by('nivel_id').values())
+    json_response = {'puntuaciones': puntuaciones}
     return JsonResponse(json_response)
 
 
@@ -40,22 +57,13 @@ def preguntas(request):
     preguntas = None
     categoriaId = request.GET.get('categoriaId', None)
     preguntaId = request.GET.get('preguntaId', None)
+    nivelId = request.GET.get('nivelId', None)
     siguientesPreguntas = []
-    if Pregunta.objects.filter(categoria_id=categoriaId).exists():
+    if Pregunta.objects.filter(categoria_id=categoriaId, nivel_id=nivelId).exists():
         preguntas = list(Pregunta.objects.filter(
-            categoria_id=categoriaId).values())
-        preguntasFiltrasxCategoria = Pregunta.objects.filter(
-            categoria_id=categoriaId)
-        totalElementos = len(list(preguntas))
+            categoria_id=categoriaId, nivel_id=nivelId).values())
 
-        # Aca tenia que enviar todas las preguntas que faltan menos la pregunta actual
-        # pero tuve que enviar un arreglo de ids de preguntas porque el objeto horrible de django
-        # no me dejo iterar el arreglo, se va hacer un workaround con JS hasta encontrar una solucion mejor
-        for index, item in enumerate(preguntasFiltrasxCategoria):
-            siguientesPreguntas.append(item.id)
-
-    json_response = {'preguntas': preguntas,
-                     'siguientesPreguntas': siguientesPreguntas}
+    json_response = {'preguntas': preguntas}
     return JsonResponse(json_response)
 
 

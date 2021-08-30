@@ -8,12 +8,18 @@ from juego.models import Puntuacion
 
 @login_required(login_url='/login')
 def inicio(request):
-    puntuaciones = Puntuacion.objects.all()
+    usuarioId = request.user.id
+    puntuaciones = []
     copitas = []
-    for p in puntuaciones:
-        copitas.append({'nivel': p.nivel.nombre, 'categoria' : p.categoria.nombre})
+    if Puntuacion.objects.filter(usuario_id=usuarioId).exists():
+        puntuaciones = Puntuacion.objects.filter(usuario_id=usuarioId)
+        for p in puntuaciones:
+            copitas.append(
+                {'nivel': p.nivel.nombre, 'categoria': p.categoria.nombre})
+
     categorias = Categoria.objects.order_by('pk')
     opCategorias = []
+
     for c in categorias:
         opCategorias.append(
             {'id': c.id, 'nombre': c.nombre, 'key': 'cat' + str(c.id)})

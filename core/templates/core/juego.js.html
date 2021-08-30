@@ -1,6 +1,7 @@
 <script>
 
-var preguntaActualId = '{{pregunta.id}}';
+  var preguntaActualId = '{{pregunta.id}}';
+  var nivelActualId = '{{nivel.id}}';
   var categoriaActualId = '{{categoria.id}}';
   var todasLasPreguntas = [];
   var preguntasQueFaltas = [];
@@ -12,14 +13,15 @@ var preguntaActualId = '{{pregunta.id}}';
   const total = document.createElement('h3');
   function traerPreguntas() {
     const categoriaId = '{{categoria.id}}'
-    const preguntasUrl = `{% url 'preguntas' %}?categoriaId=${categoriaId}&preguntaId=${preguntaActualId}`;
+    const preguntasUrl = `{% url 'preguntas' %}?categoriaId=${categoriaId}&preguntaId=${preguntaActualId}&nivelId=${nivelActualId}`;
     fetch(preguntasUrl).then(response => response.json()).then(function(data){
-      const { preguntas, siguientesPreguntas } = data;
+      const { preguntas } = data;
       todasLasPreguntas = preguntas;
-      preguntasQueFaltas = siguientesPreguntas.filter(item => item > parseInt(preguntaActualId));
+      siguientesPreguntas = preguntas.map(item => (item.id));
+      preguntasQueFaltas = siguientesPreguntas.filter(id => id > parseInt(preguntaActualId));
       totalPreguntasXCategoria = preguntas.length;
-      totaRestantes = preguntasQueFaltas.length;
-      const avance = `${totalPreguntasXCategoria - totaRestantes} / ${totalPreguntasXCategoria}`
+      const totalRestantes = preguntasQueFaltas.length;
+      const avance = `${totalPreguntasXCategoria - totalRestantes} / ${totalPreguntasXCategoria}`
       total.innerHTML = '<span>'+avance+'</span>';
       document.getElementById("totalPreguntas").appendChild(total);
     });
@@ -74,7 +76,7 @@ var preguntaActualId = '{{pregunta.id}}';
     let url = "{% url 'inicio' %}"
     if(!!preguntasQueFaltas.length) {
       const sigPregId = preguntasQueFaltas[0].toString();
-      url = "{% url 'juego' categoriaId=123 preguntaId=456 %}".replace(/123/, categoriaActualId).replace(/456/, sigPregId)
+      url = "{% url 'juego' categoriaId=123 preguntaId=456 nivelId=789 %}".replace(/123/, categoriaActualId).replace(/456/, sigPregId).replace(/789/, nivelActualId)
       window.location.href = url;
     } else {
       // Guardamos los puntajes en el base de Django
@@ -84,7 +86,7 @@ var preguntaActualId = '{{pregunta.id}}';
       let puntuacion = {
         'usuarioId': parseInt(usuario),
         'categoriaId': parseInt(categoriaActualId),
-        'nivelId': 1,
+        'nivelId': parseInt(nivelActualId),
         'cantidadPreguntas': totalPreguntasXCategoria,
         'cantidadRespuestas': cantidadRespuestas
       }
@@ -101,6 +103,7 @@ var preguntaActualId = '{{pregunta.id}}';
         body: JSON.stringify(puntuacion)
       })
       .then(() => {}).then(() => {
+
         cuenta.innerHTML = '<div class="exito-color">Felicitaciones!</div>';
         document.getElementById("cuenta").appendChild(cuenta);
         setTimeout(() => {
