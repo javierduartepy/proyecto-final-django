@@ -35,9 +35,9 @@
 
 .error-color {
   color: #f62d51;
-  text-shadow: 2px 2px 4px #000;
   -webkit-animation: heartBeat 1s;
   animation: heartBeat 10s;
+  text-shadow: 2px 2px 2px black;
 }
 
 .exito-color {
@@ -126,4 +126,19 @@ Arial,sans-serif;
 Arial,sans-serif;
 }
 
+.progreso {
+  
+  font-family: 'Open Sans','Helvetica Neue',Helvetica,
+Arial,sans-serif;
+}
 
+.tabla-progreso {
+  font-weight: 800;
+  font-family: 'Open Sans','Helvetica Neue',Helvetica,
+Arial,sans-serif;
+}
+
+.datos-progreso {
+  font-family: 'Open Sans','Helvetica Neue',Helvetica,
+Arial,sans-serif;
+}
