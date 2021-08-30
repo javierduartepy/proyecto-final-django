@@ -3,13 +3,14 @@
     var primeraPregunta = null;
     var categoriaAJugar = null;
     var nivelAJugar = null;
+    
     /*Funcion que permite seleccionar una catgoria y pasarsela a la vista categoria*/
     function categoriaOnClick(key, categoriaId) {
         $(".start-button").removeClass("start-button-animation");
         categoriaAJugar = categoriaId;
         
         const punUrl = `{% url 'puntuaciones' %}?categoriaId=${categoriaId}`;
-
+        // TODO: Refactor: mejor implementarlo con async.. await
         fetch(punUrl).then(response => response.json()).then(function(data) {
             const { puntuaciones } = data;
             let = nivelActual = 1;
@@ -39,6 +40,7 @@
         })
 
     }
+
     /*Funcion que navega a la pagina del juego con la primera pregunta de la categoria seleccionada*/
     function empezarJuego() {
       if (categoriaAJugar && nivelAJugar) {

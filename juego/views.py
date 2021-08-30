@@ -18,11 +18,9 @@ def juego(request, categoriaId, preguntaId, nivelId):
 
 
 def categoria(request):
-    usuarioId = request.user.id
     preguntas = None
     categoriaId = request.GET.get('categoriaId', None)
     nivelId = request.GET.get('nivelId', None)
-    print(nivelId)
     if Pregunta.objects.filter(categoria_id=categoriaId, nivel_id=nivelId).exists():
         preguntas = list(Pregunta.objects.filter(
             categoria_id=categoriaId, nivel_id=nivelId).values())
@@ -74,12 +72,12 @@ def guardarPuntuacion(request):
         usu = datosDeLaPuntuacion["usuarioId"]
         cat = datosDeLaPuntuacion["categoriaId"]
         niv = datosDeLaPuntuacion["nivelId"]
-        cpre = datosDeLaPuntuacion["cantidadPreguntas"]
-        cres = datosDeLaPuntuacion["cantidadRespuestas"]
-        my_user = User.objects.get(pk=usu)
-        my_cat = Categoria.objects.get(pk=cat)
-        my_niv = Nivel.objects.get(pk=niv)
-        puntuacion = Puntuacion(usuario=my_user, categoria=my_cat, nivel=my_niv,
-                                cantidad_preguntas=cpre, cantidad_respuestas=cres)
+        totalPreguntas = datosDeLaPuntuacion["cantidadPreguntas"]
+        totalRespondidas = datosDeLaPuntuacion["cantidadRespuestas"]
+        usuario = User.objects.get(pk=usu)
+        categoria = Categoria.objects.get(pk=cat)
+        nivel = Nivel.objects.get(pk=niv)
+        puntuacion = Puntuacion(usuario=usuario, categoria=categoria, nivel=nivel,
+                                cantidad_preguntas=totalPreguntas, cantidad_respuestas=totalRespondidas)
         puntuacion.save()
     return redirect('inicio')

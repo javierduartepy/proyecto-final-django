@@ -79,43 +79,50 @@
       url = "{% url 'juego' categoriaId=123 preguntaId=456 nivelId=789 %}".replace(/123/, categoriaActualId).replace(/456/, sigPregId).replace(/789/, nivelActualId)
       window.location.href = url;
     } else {
-      // Guardamos los puntajes en el base de Django
-      var csrftoken = '{{ csrf_token }}'
-      const usuario = "{{request.user.id}}";
       const cantidadRespuestas = getPuntuacion();
-      let puntuacion = {
-        'usuarioId': parseInt(usuario),
-        'categoriaId': parseInt(categoriaActualId),
-        'nivelId': parseInt(nivelActualId),
-        'cantidadPreguntas': totalPreguntasXCategoria,
-        'cantidadRespuestas': cantidadRespuestas
-      }
-
-      const url = "{% url 'puntuacion' %}"
-      fetch(url, {
-        method: 'POST',
-        credentials: 'include',
-        headers:{
-          'Accept': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest',
-          'X-CSRFToken': csrftoken,
-        },
-        body: JSON.stringify(puntuacion)
-      })
-      .then(() => {}).then(() => {
-
-        cuenta.innerHTML = '<div class="exito-color">Felicitaciones!</div>';
-        document.getElementById("cuenta").appendChild(cuenta);
-        setTimeout(() => {
-          window.location.href = url;
-      }, _TIMEOUT);
-          
+      const cincuentaPorciento = totalPreguntasXCategoria / 2;
+      // Solo guardamos el puntaje si alcanzo a responder el 50% de las preguntas
+      if (cantidadRespuestas < cincuentaPorciento) {
+        cuenta.innerHTML = '<div class="error-color">!Perdió, Siga intentando!</div>';
+          document.getElementById("cuenta").appendChild(cuenta);
+          setTimeout(() => {
+            window.location.href = url;
+          }, _TIMEOUT);
+      } else {
+        // Guardamos los puntajes en el base de Django
+        var csrftoken = '{{ csrf_token }}'
+        const usuario = "{{request.user.id}}";
+        let puntuacion = {
+          'usuarioId': parseInt(usuario),
+          'categoriaId': parseInt(categoriaActualId),
+          'nivelId': parseInt(nivelActualId),
+          'cantidadPreguntas': totalPreguntasXCategoria,
+          'cantidadRespuestas': cantidadRespuestas
+        }
+  
+        const url = "{% url 'puntuacion' %}"
+        fetch(url, {
+          method: 'POST',
+          credentials: 'include',
+          headers:{
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRFToken': csrftoken,
+          },
+          body: JSON.stringify(puntuacion)
         })
-      .catch(function(err) {
-        console.log(err);
-      });
+        .then(() => {}).then(() => {
+          cuenta.innerHTML = '<div class="exito-color">!Ganó, Felicitaciones!</div>';
+          document.getElementById("cuenta").appendChild(cuenta);
+          setTimeout(() => {
+            window.location.href = url;
+          }, _TIMEOUT);
+          })
+        .catch(function(err) {
+          console.log(err);
+        });
+      }
     }
-    
   }
  
    traerPreguntas();
