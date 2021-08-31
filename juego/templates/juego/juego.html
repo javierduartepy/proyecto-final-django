@@ -6,20 +6,21 @@
 <h4 class="subheading">Nivel: {{nivel.nombre}}</h4>
 <div class="section-heading"></div>
 <div id="totalPreguntas"></div>
+<h4 class="section-heading">{{pregunta.pregunta}}</h4>
 {% endblock %} 
 
 {% block content %}
 {% block js_footer %}{% include 'core/templates/core/juego.js.html' %}{% endblock js_footer %}
 <div class="row">
   <div class="col-lg-3 col-md-4 offset-lg-1">
-    <img
-      class="img-fluid"
-      src="{{pregunta.imagen}}"
-      alt=""
-    />
+    {% if pregunta.imagen %}
+      <img class="img-fluid" src="{{pregunta.imagen}}"/>
+    {% else %}
+      <img class="img-fluid" src="{% static 'core/img/default-image.jpg' %}"/>
+    {% endif %}
+    
   </div>
   <div class="col-lg-7 col-md-8">
-    <h4 class="section-heading">{{pregunta.pregunta}}</h4>
     {% for op in opciones %}
     <div>
       <button 

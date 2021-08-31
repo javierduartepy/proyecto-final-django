@@ -32,7 +32,14 @@ SECRET_KEY = 'django-insecure-ii4gmfj8k1a!@3sf*x7jgoqi(u_x!&3o09r-%(da*9_6(8s0%_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+if DEBUG is False:
+    ALLOWED_HOSTS = [
+        '127.0.0.1:8000',
+        '*',
+    ]
+
+if DEBUG is True:
+    ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -127,6 +134,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 STATIC_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Default primary key field type

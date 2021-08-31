@@ -11,6 +11,4 @@ urlpatterns = [
          juego_views.juego, name='juego'),
     path('juego/<int:categoriaId>/<int:nivelId>/<int:preguntaId>',
          juego_views.juego, name='juego'),
-
-
 ]
