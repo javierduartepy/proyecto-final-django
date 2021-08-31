@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Avatar(models.Model):
-    nombre = models.TextField()
+    nombre = models.CharField(max_length=50, null=False, blank=False)
     usuario = models.ForeignKey(
         User, null=False, blank=False, on_delete=models.RESTRICT)
     created = models.DateTimeField(

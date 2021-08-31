@@ -1,3 +1,4 @@
+from usuario.models import Avatar
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
@@ -7,7 +8,7 @@ from django.contrib.auth import login as do_login
 from django.contrib.auth import logout as do_logout
 from django import forms
 from .forms import UserCreationFormWithEmail
-
+from django.contrib.auth.models import User
 
 def login(request):
     form = AuthenticationForm()
@@ -80,3 +81,12 @@ class Registro(CreateView):
         form.fields['password2'].widget = forms.PasswordInput(
             attrs={'class': 'form-control mb-2', 'placeholder': 'Para verificar, introduzca la misma contraseña anterior'})
         return form
+
+
+
+def guardarAvatar(request, nombre):
+    usuario = request.user
+    avatar = Avatar(nombre = nombre, usuario = usuario)
+    avatar.save()
+
+    return redirect("inicio")

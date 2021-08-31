@@ -1,3 +1,4 @@
+from usuario.models import Avatar
 from django.shortcuts import render
 from .models import Integrante, Miscelanea
 from juego.models import Categoria
@@ -9,6 +10,13 @@ from juego.models import Puntuacion
 @login_required(login_url='/login')
 def inicio(request):
     usuarioId = request.user.id
+    if Avatar.objects.filter(usuario_id=usuarioId).exists():
+        imagen = Avatar.objects.get(pk=usuarioId)
+    else:
+        imagen = "monster_1"
+
+
+
     puntuaciones = []
     copitas = []
     if Puntuacion.objects.filter(usuario_id=usuarioId).exists():
@@ -23,7 +31,7 @@ def inicio(request):
     for c in categorias:
         opCategorias.append(
             {'id': c.id, 'nombre': c.nombre, 'key': 'cat' + str(c.id)})
-    return render(request, "core/inicio.html", {'categorias': opCategorias, 'puntuaciones': puntuaciones, 'copitas': copitas})
+    return render(request, "core/inicio.html", {'categorias': opCategorias, 'puntuaciones': puntuaciones, 'copitas': copitas, 'avatar': imagen})
 
 
 @login_required(login_url='/login')
