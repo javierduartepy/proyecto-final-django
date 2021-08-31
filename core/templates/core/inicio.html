@@ -93,28 +93,23 @@
                 <td>
                 {% autoescape on %}
                 {% with "https://juegochacoapp.herokuapp.com/" as host %}
-                {% with "Share in" as share_txt %}
+                {% with "Algo para compartir" as share_txt %}
                 {% with content.get_url as page_url %}
-                {% with content.title as title %}
+                {% with "Es es un sitio de juego de preguntas" as title %}
                 
 
                 {% with "twitter" as service %}
-                  <a href="http://twitter.com/share?url={{ host }}{{ page_url }}&amp;text={{ title }}" target="_blank" title="{{ share_txt }} {{ service }}">
+                  <a style="text-decoration: none;" href="http://twitter.com/share?url={{ host }}{{ page_url }}&amp;text={{ title }}" target="_blank" title="{{ share_txt }} {{ service }}">
                     <i class="fa fa-twitter"></i>
                   </a>
                 {% endwith%}
 
                 {% with "facebook" as service %}
-                  <a href="http://www.facebook.com/share.php?u={{ host }}{{ page_url }}&amp;t={{ chilo }}" target="_blank" title="{{ share_txt }} {{ service }}">
+                  <a style="text-decoration: none;" href="http://www.facebook.com/share.php?u={{ host }}{{ page_url }}&amp;t={{ title }}" target="_blank" title="{{ share_txt }} {{ service }}">
                     <i class="fa fa-facebook"></i>
                   </a>
                 {% endwith %}
 
-                {% with "instagram" as service %}
-                  <a href="http://www.instagram.com/reader/link?title={{ title }}&amp;url={{ host }}{{ page_url }}" target="_blank" title="{{ share_txt }} {{ service }}">
-                    <i class="fa fa-instagram"></i>
-                  </a>
-                {% endwith %}
                 
                 {% endwith %}
                 {% endwith %}
