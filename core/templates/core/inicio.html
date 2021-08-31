@@ -51,9 +51,10 @@
 {% block content %}
 <div class="row">
   <div class="col-md-2">
+    {% static "" as baseUrl %}
     <img
       class="img-fluid avatar avatar-profile"
-      src="{% static 'core/img/avatar/monster_7.svg' %}"
+      src="{{ baseUrl }}core/img/avatar/{{avatar}}.svg"
       alt=""
     />
   </div>

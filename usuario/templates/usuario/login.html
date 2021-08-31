@@ -2,13 +2,11 @@
     <head>
       <title>Login</title>
       <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-      <link rel="icon" href="../static\core\img\favicon.ico"/>
-
-     
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>     
 
       <!-- Estilos y fuentes del template  -->
       {% load static %}
+      <link rel="icon" href="{% static 'core/img/favicon.ico' %}"/>
       <link href="{% static 'core/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"/>
       <link href="{% static 'core/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css"/>
       <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
@@ -68,8 +66,6 @@
             </div>
           </div>
         </div>
-      </footer> 
-      <script src="{% static 'core/vendor/jquery/jquery.min.js' %}"></script>
-      <script src="{% static 'core/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+      </footer>
   </body>
 </html>

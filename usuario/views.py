@@ -10,6 +10,7 @@ from django import forms
 from .forms import UserCreationFormWithEmail
 from django.contrib.auth.models import User
 
+
 def login(request):
     form = AuthenticationForm()
     if request.method == "POST":
@@ -19,24 +20,19 @@ def login(request):
             password = form.cleaned_data['password']
 
             user = authenticate(username=username, password=password)
-            print(user)
+            avatar = request.GET.get('av', None)
+            if avatar is not None:
+                avatar = Avatar(nombre=avatar, usuario=user)
+                avatar.save()
+            elif not Avatar.objects.filter(usuario_id=user.id).exists():
+                avatar = Avatar(nombre="monster_1", usuario=user)
+                avatar.save()
+
             if user is not None:
                 do_login(request, user)
                 return redirect('/')
 
     return render(request, "usuario/login.html", {'form': form})
-
-
-# def registro(request):
-#     form = UsuarioForm()
-#     if request.method == "POST":
-#         form = UsuarioForm(data=request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             if user is not None:
-#                 do_login(request, user)
-#                 return redirect('/login')
-#     return render(request, "usuario/registro.html", {'form': form})
 
 
 def salir(request):
@@ -51,7 +47,7 @@ class Registro(CreateView):
     import random
     avatar_al_azar = random.choice(avatar_ids)
 
-    nombre_del_avatar = f"{avartar_prefix}{avatar_al_azar}.{avartar_sufix}"
+    avatar = f"{avartar_prefix}{avatar_al_azar}.{avartar_sufix}"
 
     form_class = UserCreationFormWithEmail
 
@@ -59,11 +55,11 @@ class Registro(CreateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(Registro, self).get_context_data(**kwargs)
-        ctx['avatar'] = self.nombre_del_avatar
+        ctx['avatar'] = self.avatar
         return ctx
 
     def get_success_url(self):
-        return reverse_lazy('login')+'?registro'
+        return reverse_lazy('login')+'?registro&av='+self.nombre_del_avatar
 
     def get_form(self, form_class=None):
         form = super(Registro, self).get_form()
@@ -83,10 +79,9 @@ class Registro(CreateView):
         return form
 
 
-
 def guardarAvatar(request, nombre):
     usuario = request.user
-    avatar = Avatar(nombre = nombre, usuario = usuario)
+    avatar = Avatar(nombre=nombre, usuario=usuario)
     avatar.save()
 
     return redirect("inicio")

@@ -11,11 +11,10 @@ from juego.models import Puntuacion
 def inicio(request):
     usuarioId = request.user.id
     if Avatar.objects.filter(usuario_id=usuarioId).exists():
-        imagen = Avatar.objects.get(pk=usuarioId)
+        avatar = Avatar.objects.get(usuario_id=usuarioId)
+        imagen = avatar.nombre
     else:
-        imagen = "monster_1"
-
-
+        imagen = "monster_7"
 
     puntuaciones = []
     copitas = []
