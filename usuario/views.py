@@ -44,8 +44,22 @@ def salir(request):
 
 
 class Registro(CreateView):
+    avatar_ids = list(range(1, 7))
+    avartar_prefix = "monster_"
+    avartar_sufix = "svg"
+    import random
+    avatar_al_azar = random.choice(avatar_ids)
+
+    nombre_del_avatar = f"{avartar_prefix}{avatar_al_azar}.{avartar_sufix}"
+
     form_class = UserCreationFormWithEmail
+
     template_name = 'usuario/registro.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(Registro, self).get_context_data(**kwargs)
+        ctx['avatar'] = self.nombre_del_avatar
+        return ctx
 
     def get_success_url(self):
         return reverse_lazy('login')+'?registro'
