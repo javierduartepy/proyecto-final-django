@@ -7,6 +7,7 @@ db.sqlite3
 media
 juego/migrations/
 core/migrations/
+usuario/migrations/
 # Backup files # 
 .bak 
 
