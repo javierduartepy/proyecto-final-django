@@ -1,12 +1,12 @@
 {% extends 'core/base.html' %} {% block title %}Juego{% endblock %}
-{% block background %}{% load static %}{% static 'core/img/pavos.jpg' %}{% endblock %}
+{% block background %}{% load static %}{% static 'core/img/cocodrilo.png' %}{% endblock %}
 {% block headers %}
 <div id="cuenta" class="animate__animated animate__bounce"></div>
-<h4 class="subheading">{{categoria.nombre}}</h4>
-<h4 class="subheading">Nivel: {{nivel.nombre}}</h4>
+<h6 class="categoria-juego">{{categoria.nombre}}</h6>
+<h6 class="nivel-juego">Nivel: {{nivel.nombre}}</h6>
 <div class="section-heading"></div>
 <div id="totalPreguntas"></div>
-<h4 class="section-heading">{{pregunta.pregunta}}</h4>
+<h4 class="section-heading preguntas-juego">{{pregunta.pregunta}}</h4>
 {% endblock %} 
 
 {% block content %}

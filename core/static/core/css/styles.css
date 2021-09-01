@@ -138,3 +138,39 @@ ul li button:hover {
 .datos-progreso {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+.no-binary {
+  text-shadow: 2px 2px 2px black;
+  font-weight: 800;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #ffc107;
+}
+
+.avance {
+  text-shadow: 3px 3px 3px black;
+  font-weight: 800;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
+}
+
+.preguntas-juego {
+  text-shadow: 10px 10px 10px black;
+  font-weight: 800;
+  font-family: "Open Sans", "Helvetica Neue",
+  Helvetica, Arial, sans-serif;
+  
+}
+
+.categoria-juego {
+  text-shadow: 3px 3px 3px black;
+  font-family: "Open Sans", "Helvetica Neue",
+  Helvetica, Arial, sans-serif;
+  /* font-weight: 800; */
+}
+
+.nivel-juego {
+  text-shadow: 3px 3px 3px black; 
+  font-family: "Open Sans", "Helvetica Neue",
+  Helvetica, Arial, sans-serif;
+  /* font-weight: 800; */
+}
