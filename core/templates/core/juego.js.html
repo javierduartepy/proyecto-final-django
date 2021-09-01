@@ -22,14 +22,14 @@
       totalPreguntasXCategoria = preguntas.length;
       const totalRestantes = preguntasQueFaltas.length;
       const avance = `${totalPreguntasXCategoria - totalRestantes} / ${totalPreguntasXCategoria}`
-      total.innerHTML = '<span>'+avance+'</span>';
+      total.innerHTML = '<span class=avance>'+avance+'</span>';
       document.getElementById("totalPreguntas").appendChild(total);
     });
   }
   
   function cuentaRegresiva(numero) {
     var contador = numero;
-    cuenta.innerHTML = '<span>'+contador+'</span>';
+    cuenta.innerHTML = '<span class=no-binary>'+contador+'</span>';
     document.getElementById("cuenta").appendChild(cuenta);
     preguntaCountdown = setInterval(function() {
       contador--
@@ -42,7 +42,7 @@
           avanzarAlSiguiente();
         }, _TIMEOUT);
       } else {
-        cuenta.innerHTML = '<span>'+contador+'</span>';
+        cuenta.innerHTML = '<span class=no-binary>'+contador+'</span>';
         document.getElementById("cuenta").appendChild(cuenta);
       }
     }, _TIMEOUT);

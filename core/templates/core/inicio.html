@@ -2,7 +2,11 @@
 {% block background %} {% load static %}{% static 'core/img/museo-del-barro.jpg' %}{% endblock %}
 {% block headers %}
 {% block js_footer %}{% include 'core/templates/core/categoria.js.html' %}{% endblock js_footer %}
+<div id="mainContent">
 <h2 class= "titulo-juego">Juego de Preguntas Sobre la Provincia del Chaco</h2>
+
+<a onclick="vamosAPuntajes()" class="scroll-button" role="button"><i class="fa fa-arrow-down fa-2x"></i></a>
+
 <div class="row">
    <div class="col-lg-8 col-md-10 mx-auto j-box-1">
       <span class="mensaje-categoria">Seleccione una categoría de preguntas</span>
@@ -45,7 +49,7 @@
         <a onclick="empezarJuego()"
            class="btn btn-primary btn-lg j-button start-button" 
            role="button"><i class="fa fa-rocket fa-2x"></i> Empezar Juego</a>
-    </div> 
+    </div>
 </div>
 {% endblock %}
 {% block content %}
@@ -90,23 +94,25 @@
           <table class = "table">
             <thead class='tabla-progreso'>
               <tr>
-                <th>Jugar</th>
+                <th></th>
                 <th>Categoría</th>
                 <th>Nivel</th>
                 <th>Cantidad de Preguntas</th>
                 <th>Respuestas Correctas</th>
+                <th>Voler a Jugar</th>
               </tr>
             </thead>
             <tbody>
               {% for puntuacion in puntuaciones %}
               <tr class='datos-progreso'>
-                <td><a href="{% url 'juego' puntuacion.categoria.id puntuacion.nivel.id %}">
-                  <i class="fa fa-history"></i>
-                </a></td>
+                <td><span style="color: #ffc107;"><i class="fa fa-trophy"></i></span></td>
                 <td>{{puntuacion.categoria}}</td>
                 <td>{{puntuacion.nivel}}</td>
-                <td>{{puntuacion.cantidad_preguntas}}</td>
-                <td>{{puntuacion.cantidad_respuestas}}</td>
+                <td style="text-align: center;">{{puntuacion.cantidad_preguntas}}</td>
+                <td style="text-align: center;">{{puntuacion.cantidad_respuestas}}</td>
+                <td><a style="color: #059862 !important;" href="{% url 'juego' puntuacion.categoria.id puntuacion.nivel.id %}">
+                  <i class="fa fa-history"></i>
+                </a></td>
               </tr>
               {% endfor %}
             </tbody>
@@ -114,7 +120,7 @@
   </div>
 </div>
 {% endblock %}
-
+</div>
 
 
 

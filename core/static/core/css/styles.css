@@ -139,6 +139,36 @@ ul li button:hover {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+.no-binary {
+  text-shadow: 2px 2px 2px black;
+  font-weight: 800;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #ffc107;
+}
+
+.avance {
+  text-shadow: 3px 3px 3px black;
+  font-weight: 800;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.preguntas-juego {
+  text-shadow: 10px 10px 10px black;
+  font-weight: 800;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.categoria-juego {
+  text-shadow: 3px 3px 3px black;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* font-weight: 800; */
+}
+
+.nivel-juego {
+  text-shadow: 3px 3px 3px black;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* font-weight: 800; */
+}
 .sharein {
   margin-left: 4px;
   float: right;
@@ -150,4 +180,26 @@ ul li button:hover {
   text-decoration: none;
   font-size: larger;
   color: #1c7ed6 !important;
+}
+
+.avatar-profile:hover {
+  -webkit-animation: jello 1s;
+  animation: jello 1s;
+}
+
+.scroll-button {
+  cursor: pointer;
+  float: right;
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: large;
+  background-color: #1c7ed6;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-style: solid;
+  border-width: 1px;
+  flex-grow: 1;
+  padding-top: 6px;
+  text-shadow: 2px 2px 2px black;
 }
