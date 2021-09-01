@@ -138,3 +138,16 @@ ul li button:hover {
 .datos-progreso {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+.sharein {
+  margin-left: 4px;
+  float: right;
+  display: block;
+  margin-top: 16px;
+}
+
+.sharein a {
+  text-decoration: none;
+  font-size: larger;
+  color: #1c7ed6 !important;
+}
