@@ -82,7 +82,11 @@ def guardarPuntuacion(request):
         usuario = User.objects.get(pk=usu)
         categoria = Categoria.objects.get(pk=cat)
         nivel = Nivel.objects.get(pk=niv)
-        puntuacion = Puntuacion(usuario=usuario, categoria=categoria, nivel=nivel,
-                                cantidad_preguntas=totalPreguntas, cantidad_respuestas=totalRespondidas)
-        puntuacion.save()
+        if Puntuacion.objects.filter(usuario_id=usuario.id, categoria_id = categoria.id, nivel_id = nivel.id).exists():
+            puntos_a_editar = Puntuacion.objects.get(usuario_id=usuario.id, categoria_id = categoria.id, nivel_id = nivel.id)
+            Puntuacion.objects.filter(id=puntos_a_editar.id).update(cantidad_respuestas=totalRespondidas)
+        else:
+            puntuacion = Puntuacion(usuario=usuario, categoria=categoria, nivel=nivel,
+                                 cantidad_preguntas=totalPreguntas, cantidad_respuestas=totalRespondidas)
+            puntuacion.save()
     return redirect('inicio')
