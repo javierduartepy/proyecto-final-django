@@ -46,7 +46,7 @@ class Registro(CreateView):
     avartar_sufix = "svg"
     import random
     avatar_al_azar = random.choice(avatar_ids)
-
+    nombre_del_avatar = f"{avartar_prefix}{avatar_al_azar}"
     avatar = f"{avartar_prefix}{avatar_al_azar}.{avartar_sufix}"
 
     form_class = UserCreationFormWithEmail
