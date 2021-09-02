@@ -127,6 +127,8 @@ ul li button:hover {
 }
 
 .progreso {
+  font-weight: 600;
+  color: gray !important;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -170,15 +172,14 @@ ul li button:hover {
   /* font-weight: 800; */
 }
 .sharein {
-  margin-left: 4px;
   float: right;
   display: block;
-  margin-top: 16px;
+  text-shadow: 1px 1px 2px black;
 }
 
 .sharein a {
   text-decoration: none;
-  font-size: larger;
+  font-size: 2rem;
   color: #1c7ed6 !important;
 }
 
@@ -202,4 +203,30 @@ ul li button:hover {
   flex-grow: 1;
   padding-top: 6px;
   text-shadow: 2px 2px 2px black;
+}
+
+.usuario {
+  background-color: #2b2a33;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.usuario h3 {
+  color: white;
+}
+
+.usuario label {
+  color: white;
+}
+
+.j-button-usu {
+  margin-top: 1rem;
+  cursor: pointer;
+  font-size: 14px;
+  background-color: #1c7ed6;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-style: solid;
+  border-width: 1px;
+  flex-grow: 1;
+  text-shadow: 2px 2px 2px black;
+  border-radius: 0.5rem;
 }

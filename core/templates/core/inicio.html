@@ -10,18 +10,6 @@
 <div class="row">
    <div class="col-lg-8 col-md-10 mx-auto j-box-1">
       <span class="mensaje-categoria">Seleccione una categoría de preguntas</span>
-
-        {% comment %} <div class="row j-box-1">
-          <div class="row j-box-1">
-            <h6><i class="fa fa-trophy"></i> Nivel Básico</h6>
-          </div>
-          <div class="col-md-4">
-            <h6><i class="fa fa-trophy"></i> Nivel Medio</h6>
-          </div>
-          <div class="col-md-4">
-            <h6><i class="fa fa-trophy"></i> Nivel Master</h6>
-          </div>
-        </div> {% endcomment %}
         <div class="row j-box-1">
         <div class="col-md-12">
         {% for copa in copitas %}
@@ -68,27 +56,28 @@
         {% else %}
           <h2 class="section-heading">{{request.user.username}}</h2>
         {% endif %}
-        <div class="sharein">
-          {% autoescape on %}
-          {% with "https://juegochacoapp.herokuapp.com/" as host %}
-          {% with "Algo para compartir" as share_txt %}
-          {% with content.get_url as page_url %}
-          {% with "Es es un sitio de juego de preguntas" as title %}
-          {% with "twitter" as service %}
-            <a href="http://twitter.com/share?url={{ host }}{{ page_url }}&amp;text={{ title }}" target="_blank" title="{{ share_txt }} {{ service }}">
-              <i class="fa fa-twitter"></i>
-            </a>
-          {% endwith%}
-          {% with "facebook" as service %}
-            <a href="http://www.facebook.com/share.php?u={{ host }}{{ page_url }}&amp;t={{ title }}" target="_blank" title="{{ share_txt }} {{ service }}">
-              <i class="fa fa-facebook"></i>
-            </a>
-          {% endwith %}
-          {% endwith %}
-          {% endwith %}
-          {% endwith %}
-          {% endwith %}
-          {% endautoescape %}
+        
+          <div class="sharein">
+            {% autoescape on %}
+            {% with "https://juegochacoapp.herokuapp.com/" as host %}
+            {% with "Algo para compartir" as share_txt %}
+            {% with content.get_url as page_url %}
+            {% with "Es es un sitio de juego de preguntas" as title %}
+            {% with "twitter" as service %}
+              <a href="http://twitter.com/share?url={{ host }}{{ page_url }}&amp;text={{ title }}" target="_blank" title="{{ share_txt }} {{ service }}">
+                <i class="fa fa-twitter"></i>
+              </a>
+            {% endwith%}
+            {% with "facebook" as service %}
+              <a href="http://www.facebook.com/share.php?u={{ host }}{{ page_url }}&amp;t={{ title }}" target="_blank" title="{{ share_txt }} {{ service }}">
+                <i class="fa fa-facebook"></i>
+              </a>
+            {% endwith %}
+            {% endwith %}
+            {% endwith %}
+            {% endwith %}
+            {% endwith %}
+            {% endautoescape %}
           </div>
           <p class="progreso">Puntajes</p>
           <table class = "table">
@@ -110,15 +99,15 @@
                 <td>{{puntuacion.nivel}}</td>
                 <td style="text-align: center;">{{puntuacion.cantidad_preguntas}}</td>
                 <td style="text-align: center;">{{puntuacion.cantidad_respuestas}}</td>
-                <td><a style="color: #059862 !important;" href="{% url 'juego' puntuacion.categoria.id puntuacion.nivel.id %}">
+                <td style="text-align: center;"><a style="color: #059862 !important;" href="{% url 'juego' puntuacion.categoria.id puntuacion.nivel.id %}">
                   <i class="fa fa-history"></i>
                 </a></td>
               </tr>
               {% endfor %}
             </tbody>
-          </table>
+          </table>    
+        </div>
   </div>
-</div>
 {% endblock %}
 </div>
 
