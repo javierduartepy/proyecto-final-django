@@ -16,14 +16,12 @@
     </head>
 
   <body class="usuario">
+    <div id="ohsnap"></div>
     <style>.errorlist{color:red;}</style>
     <main role="main">
       <div class="container">
         <div class="row mt-3">
           <div class="col-md-9 mx-auto mb-5">
-            {% if 'register' in request.GET %}
-              <p style="color:green;">Usuario registrado correctamente, ya puedes identificarte.</p>
-            {% endif %}
             <form action="" method="post">{% csrf_token %}
               <h3 class="mb-4">Iniciar sesión</h3>
               {% if form.non_field_errors %}
@@ -46,5 +44,14 @@
          </div>
         </div>
       </main>
+      <script src="{% static 'core/vendor/jquery/jquery.min.js' %}"></script>
+      <script src="{% static 'core/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'core/js/ohsnap.min.js' %}"></script>
+      <script>
+        var seRegistro = '{{registro}}';
+        if (seRegistro === 'True') {
+          ohSnap('Excelente! Ahora ya estas registrado, ya puedes identificarte.', {color: 'success', icon: 'icon-alert'}, {time: '2000'});
+        }
+      </script>
   </body>
 </html>

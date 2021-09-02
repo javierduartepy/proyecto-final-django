@@ -12,6 +12,10 @@ from django.contrib.auth.models import User
 
 
 def login(request):
+    dic = request.GET.copy()
+    registro = False
+    if dic:
+        registro = dic['registro']
     form = AuthenticationForm()
     if request.method == "POST":
         form = AuthenticationForm(data=request.POST)
@@ -32,7 +36,7 @@ def login(request):
                 do_login(request, user)
                 return redirect('/')
 
-    return render(request, "usuario/login.html", {'form': form})
+    return render(request, "usuario/login.html", {'form': form, 'registro': registro})
 
 
 def salir(request):
@@ -59,7 +63,7 @@ class Registro(CreateView):
         return ctx
 
     def get_success_url(self):
-        return reverse_lazy('login')+'?registro&av='+self.nombre_del_avatar
+        return reverse_lazy('login')+'?registro=True&av='+self.nombre_del_avatar
 
     def get_form(self, form_class=None):
         form = super(Registro, self).get_form()

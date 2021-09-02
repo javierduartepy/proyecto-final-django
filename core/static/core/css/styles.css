@@ -1,3 +1,37 @@
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #eed3d7;
+  border-radius: 4px;
+  position: absolute;
+  bottom: 0px;
+  right: 21px;
+  /* Each alert has its own width */
+  float: right;
+  clear: right;
+}
+
+.alert-red {
+  color: white;
+  background-color: #da4453;
+}
+.alert-green {
+  color: white;
+  background-color: #37bc9b;
+}
+.alert-blue {
+  color: white;
+  background-color: #4a89dc;
+}
+.alert-yellow {
+  color: white;
+  background-color: #f6bb42;
+}
+.alert-orange {
+  color: white;
+  background-color: #e9573f;
+}
+
 .j-button {
   cursor: pointer;
   margin: 5px;
@@ -198,11 +232,9 @@ ul li button:hover {
 
 .guia-ayuda {
   text-shadow: 3px 3px 3px black;
-  font-family: "Open Sans", "Helvetica Neue", 
-  Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 800;
   font-size: 25px;
-  
 }
 
 .copas {
@@ -211,18 +243,15 @@ ul li button:hover {
   color: #ffc107;
   text-shadow: 2px 2px 2px black;
   font-weight: 800;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica,
-   Arial, sans-serif;
-   font-size: 20px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 20px;
 }
 
 .ayuda {
   text-shadow: 3px 3px 3px black;
-  font-family: "Open Sans", "Helvetica Neue", 
-  Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 800;
 }
-
 
 .usuario {
   background-color: #2b2a33;
@@ -251,30 +280,26 @@ ul li button:hover {
 }
 .sabias-que {
   text-shadow: 3px 3px 3px black;
-  font-family: "Open Sans", "Helvetica Neue", 
-  Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 800;
 }
 
 .curiosidades-chaco {
   text-shadow: 3px 3px 3px black;
-  font-family: "Open Sans", "Helvetica Neue", 
-  Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 800;
   font-size: 25px;
 }
 
 .integrantes {
   text-shadow: 3px 3px 3px black;
-  font-family: "Open Sans", "Helvetica Neue", 
-  Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 800;
 }
 
 .quienes-somos {
   text-shadow: 3px 3px 3px black;
-  font-family: "Open Sans", "Helvetica Neue", 
-  Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 800;
   font-size: 25px;
 }
