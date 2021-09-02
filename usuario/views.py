@@ -15,7 +15,8 @@ def login(request):
     dic = request.GET.copy()
     registro = False
     if dic:
-        registro = dic['registro']
+        if 'registro' in dic:
+            registro = dic['registro']
     form = AuthenticationForm()
     if request.method == "POST":
         form = AuthenticationForm(data=request.POST)
