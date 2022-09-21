@@ -12,6 +12,7 @@ from core import views as core_views
 urlpatterns = [
     path('', core_views.inicio, name='inicio'),
     path('inicio/', core_views.inicio, name='inicio'),
+    path('preguntaslista/', core_views.crearpregunta, name='preguntaslista'),
     path('acercade/', core_views.acercade, name='acercade'),
     path('ayuda/', core_views.ayuda, name='ayuda'),
     path('miscelanea/', core_views.miscelanea, name='miscelanea'),

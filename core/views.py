@@ -1,9 +1,9 @@
 from usuario.models import Avatar
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Integrante, Miscelanea
-from juego.models import Categoria
 from django.contrib.auth.decorators import login_required
-from juego.models import Puntuacion
+from juego.models import Puntuacion, Nivel, Pregunta, Categoria
+from .forms import FormPregunta
 # Create your views here.
 
 
@@ -48,3 +48,38 @@ def miscelanea(request):
 def acercade(request):
     integrantes = Integrante.objects.all()
     return render(request, "core/acercade.html", {'integrantes': integrantes})
+
+
+@login_required(login_url='/login')
+def preguntaslista(request):
+    formulario = FormPregunta()
+    return render(request, "core/preguntaslista.html", {
+        'form': formulario
+    })
+
+
+@login_required(login_url='/login')
+def crearpregunta(request):
+    if request.method == 'POST':
+        formulario = FormPregunta(request.POST)
+        if formulario.is_valid():
+            data_form = formulario.cleaned_data
+            pregunta = data_form["pregunta"]
+            categoriaId = data_form["categoriaId"]
+            nivelId = data_form["nivelId"]
+            imagen = data_form["imagen"]
+
+            # El guadado de la pregunta
+            c = Categoria.objects.get(pk=categoriaId)
+            n = Nivel.objects.get(pk=nivelId)
+
+            preguntaObject = Pregunta(
+                categoria=c, nivel=n, pregunta=pregunta, imagen=imagen)
+            preguntaObject.save()
+        else:
+            print("Error")
+    else:
+        formulario = FormPregunta()
+    return render(request, "core/preguntaslista.html", {
+        'form': formulario
+    })
